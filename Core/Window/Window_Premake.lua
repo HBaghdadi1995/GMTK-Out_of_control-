@@ -1,5 +1,5 @@
 project "Window"
-    kind "ConsoleApp"
+    kind "StaticLib"
     language "C++"
 
     files {

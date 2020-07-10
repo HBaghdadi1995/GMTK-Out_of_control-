@@ -361,5 +361,14 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 
+#solution
 *.sln
 *.vcxproj*
+
+#glew auto
+External/glew/auto/
+External/glew/build/
+External/glew/config/
+External/glew/doc/
+
+*.in

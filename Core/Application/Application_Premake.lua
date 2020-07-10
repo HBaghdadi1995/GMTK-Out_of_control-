@@ -12,7 +12,7 @@ project "Application"
     importGLFW()
 
     --Core
-    --importWindow()
+    importWindow()
 
     --includedirs {"../Window/src"}
     --links{"Window"}

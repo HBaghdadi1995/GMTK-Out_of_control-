@@ -10,6 +10,7 @@ project "Application"
 
     --Third party
     importGLFW()
+    importGLAD()
 
     --Core
     importWindow()

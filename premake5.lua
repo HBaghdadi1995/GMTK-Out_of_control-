@@ -23,6 +23,7 @@ workspace "OutOfControl"
     
     group"External"
         dofile "External/glfw/glfw_Premake.lua"
+        dofile "External/glad/glad_Premake.lua"
 
     group"Core"
         dofile "Core/Window/Window_Premake.lua"

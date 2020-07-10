@@ -1,0 +1,10 @@
+{
+    "Lua.diagnostics.globals": [
+        "files",
+        "language",
+        "kind",
+        "project",
+        "includedirs",
+        "links"
+    ]
+}

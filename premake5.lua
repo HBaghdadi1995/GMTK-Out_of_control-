@@ -17,9 +17,12 @@ workspace "OutOfControl"
     filter "system:windows"
 		defines{"WINDOWS"}
     filter{}
+
+    dofile "External_Dependencies.lua"
+    dofile "Core_Dependencies.lua"
     
     group"External"
-        dofile "External/glfw-3.3.2/glfw_Premake.lua"
+        dofile "External/glfw/glfw_Premake.lua"
 
     group"Core"
         dofile "Core/Window/Window_Premake.lua"

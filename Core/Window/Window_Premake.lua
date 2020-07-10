@@ -7,3 +7,6 @@ project "Window"
         "**.cpp",
         "*.lua"
     }
+    
+    --Third party
+    importGLFW()

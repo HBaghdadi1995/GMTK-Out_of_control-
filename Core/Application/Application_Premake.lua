@@ -7,3 +7,13 @@ project "Application"
         "**.cpp",
         "*.lua"
     }
+
+    --Third party
+    importGLFW()
+
+    --Core
+    --importWindow()
+
+    --includedirs {"../Window/src"}
+    --links{"Window"}
+    

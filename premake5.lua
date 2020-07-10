@@ -21,4 +21,5 @@ workspace "OutOfControl"
     group"External"
 
     group"Core"
+        dofile "Core/Application/Application_Premake.lua"
         

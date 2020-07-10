@@ -4,6 +4,6 @@ project "Application"
 
     files {
         "**.h",
-        "**.cpp"
+        "**.cpp",
         "*.lua"
     }

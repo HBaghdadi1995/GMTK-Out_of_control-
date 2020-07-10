@@ -19,6 +19,7 @@ workspace "OutOfControl"
     filter{}
     
     group"External"
+        dofile "External/glfw-3.3.2/glfw_Premake.lua"
 
     group"Core"
         dofile "Core/Application/Application_Premake.lua"

@@ -7,7 +7,6 @@
 #include <stb_image.h>
 
 int main(int argc, char *argv[]){
-    GLFWwindow* window;
 
     Window::Instance();
 
@@ -50,10 +49,7 @@ int main(int argc, char *argv[]){
     delete shape;
     delete texture;
 
-    glfwTerminate();
-    /*while (GLenum error = glGetError()) {
-        std::cerr << "OPENGL ERROR: " << error << "\n";
-        assert(false);
-    }*/
+    Window::Destroy();
+
     return 0;
 }

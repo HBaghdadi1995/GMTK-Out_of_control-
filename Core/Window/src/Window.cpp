@@ -12,11 +12,13 @@ Window* Window::Instance()
 void Window::Destroy()
 {
     delete m_Instance;
+    glfwTerminate();
 }
 
 void Window::CreateWindow(int width, int height, std::string name)
 {
     if (!m_Window) {
+        glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
         m_Window = glfwCreateWindow(width, height, name.c_str(), NULL, NULL);
         if (!m_Window)
         {

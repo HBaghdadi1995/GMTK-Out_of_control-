@@ -21,15 +21,10 @@ int main(int argc, char *argv[]){
     Shape* shape = Shape::GenerateTile(0,14);
 
     Shader* basicShader = Shader::GenerateTileShaders();
-    while (GLenum error = glGetError()) {
-        std::cerr << "OPENGL ERROR: " << error << "\n";
-        assert(false);
-    }
     basicShader->Bind();
-    while (GLenum error = glGetError()) {
-        std::cerr << "OPENGL ERROR: " << error << "\n";
-        assert(false);
-    }
+
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     while (Window::Instance()->Update())
     {

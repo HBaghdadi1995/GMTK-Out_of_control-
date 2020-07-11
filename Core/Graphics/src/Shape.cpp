@@ -55,3 +55,18 @@ Shape* Shape::GenerateSquare()
 
 	return new Shape(verticies, count);
 }
+
+Shape* Shape::GenerateTile(float x, float y)
+{
+    unsigned int count = 6;
+    Vertex2d* verticies = new Vertex2d[6];
+    verticies[0] = { x * 32.0f          ,  y * 32.0f + 32.0f };
+    verticies[1] = { x * 32.0f          ,  y * 32.0f         };
+    verticies[2] = { x * 32.0f + 32.0f  ,  y * 32.0f         };
+    verticies[3] = { x * 32.0f + 32.0f  ,  y * 32.0f + 32.0f };
+    verticies[4] = { x * 32.0f          ,  y * 32.0f + 32.0f };
+    verticies[5] = { x * 32.0f + 32.0f  ,  y * 32.0f         };
+
+
+    return new Shape(verticies, count);
+}

@@ -16,6 +16,19 @@ project "Application"
     importWindow()
     importGraphics()
 
+    filter "configurations:Dist"
+        defines { "NDEBUG"}
+        optimize "On"
+
+        targetdir ("../../Dist")
+
+        prebuildcommands
+        {
+            ("{COPY} %{wks.location}/Src/ %{wks.location}/Dist/Src/")
+        }
+
+    filter {}
+
     --includedirs {"../Window/src"}
     --links{"Window"}
     

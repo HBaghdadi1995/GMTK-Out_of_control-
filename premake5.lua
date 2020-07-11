@@ -2,7 +2,7 @@
 workspace "OutOfControl"
     cppdialect "C++17"
     
-    configurations { "Debug", "Release"}
+    configurations { "Debug", "Release", "Dist"}
     platforms {"x64"}
 
     filter "configurations:Debug"
@@ -12,6 +12,11 @@ workspace "OutOfControl"
     filter "configurations:Release"
         defines { "NDEBUG"}
         optimize "On"
+
+    filter "configurations:Dist"
+        defines { "NDEBUG", "DIST"}
+        optimize "On"
+    
     filter {}
 
     filter "system:windows"

@@ -27,6 +27,13 @@ Shader* Shader::GenerateBasicShaders()
         std::string(SHADER_SRC) + std::string("basic.frag"));
 }
 
+Shader* Shader::GenerateTileShaders()
+{
+    return new Shader(
+        std::string(SHADER_SRC) + std::string("tiles.vert"),
+        std::string(SHADER_SRC) + std::string("basic.frag"));
+}
+
 void Shader::LoadShaders(std::string vertex, std::string fragment)
 {
 
@@ -36,6 +43,17 @@ void Shader::LoadShaders(std::string vertex, std::string fragment)
     compileShader(fragment, GL_FRAGMENT_SHADER);
 
     glLinkProgram(m_Program);
+
+    GLint program_linked;
+    glGetProgramiv(m_Program, GL_LINK_STATUS, &program_linked);
+    if (program_linked != GL_TRUE)
+    {
+        GLsizei log_length = 0;
+        GLchar message[1024];
+        glGetProgramInfoLog(m_Program, 1024, &log_length, message);
+        std::cerr << message;
+        assert(false);
+    }
 }
 
 void Shader::compileShader(std::string address, GLuint type)
@@ -46,13 +64,14 @@ void Shader::compileShader(std::string address, GLuint type)
     glShaderSource(shader, 1, &src, NULL); // vertex_shader_source is a GLchar* containing glsl shader source code
     glCompileShader(shader);
 
-    GLint vertex_compiled;
-    glGetShaderiv(shader, GL_COMPILE_STATUS, &vertex_compiled);
-    if (vertex_compiled != GL_TRUE)
+    GLint shader_compiled;
+    glGetShaderiv(shader, GL_COMPILE_STATUS, &shader_compiled);
+    if (shader_compiled != GL_TRUE)
     {
         GLsizei log_length = 0;
         GLchar message[1024];
         glGetShaderInfoLog(shader, 1024, &log_length, message);
+        std::cout << src << "\n";
         std::cout << message;
         assert(false);
     }

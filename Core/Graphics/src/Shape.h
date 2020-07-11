@@ -24,5 +24,6 @@ public:
 	void Unbind();
 
 	static Shape* GenerateSquare();
+	static Shape* GenerateTile(float x, float y);
 };
 

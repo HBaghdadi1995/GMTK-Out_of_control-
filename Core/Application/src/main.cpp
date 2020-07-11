@@ -18,10 +18,18 @@ int main(int argc, char *argv[]){
         assert(false);
     }
 
-    Shape* shape = Shape::GenerateSquare();
+    Shape* shape = Shape::GenerateTile(0,14);
 
-    Shader* basicShader = Shader::GenerateBasicShaders();
+    Shader* basicShader = Shader::GenerateTileShaders();
+    while (GLenum error = glGetError()) {
+        std::cerr << "OPENGL ERROR: " << error << "\n";
+        assert(false);
+    }
     basicShader->Bind();
+    while (GLenum error = glGetError()) {
+        std::cerr << "OPENGL ERROR: " << error << "\n";
+        assert(false);
+    }
 
     while (Window::Instance()->Update())
     {
@@ -29,10 +37,6 @@ int main(int argc, char *argv[]){
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glViewport(0, 0, 640, 480);
         shape->Draw();
-    }
-    while (GLenum error = glGetError()) {
-        std::cerr << "OPENGL ERROR: " << error << "\n";
-        assert(false);
     }
 
     delete basicShader;

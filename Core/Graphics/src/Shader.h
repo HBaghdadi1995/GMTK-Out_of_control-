@@ -6,7 +6,15 @@
 
 #include <glad/glad.h>
 
-#define SHADER_SRC "../../src/Shaders/"
+#ifdef DIST
+
+#define SHADER_SRC "./Src/Shaders/"
+
+#else //DIST
+
+#define SHADER_SRC "../../Src/Shaders/"
+
+#endif //DIST
 
 class Shader
 {
@@ -20,6 +28,7 @@ public:
     void Unbind();
 
     static Shader* GenerateBasicShaders();
+    static Shader* GenerateTileShaders();
 
 private:
     void LoadShaders(std::string vertAddress, std::string fragAddress);

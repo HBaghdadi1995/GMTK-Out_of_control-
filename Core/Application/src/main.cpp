@@ -29,7 +29,6 @@ void Initialise() {
     basicShader->Bind();
 
     basicShader->setUniform("u_Texture", texture->getSlot());
-    basicShader->setUniform("u_Texture", texture->getSlot());
 
     Graphics::Instance()->EnableBlend();
     Graphics::CheckForError();

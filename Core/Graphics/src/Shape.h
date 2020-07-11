@@ -4,8 +4,11 @@
 struct Vertex2d {
 	float x;
 	float y;
+	float texX;
+	float texY;
 
-	const static inline unsigned int count() { return 2; }
+	const static inline unsigned int LocationCount() { return 2; }
+	const static inline unsigned int TextureCount() { return 2; }
 };
 
 class Shape

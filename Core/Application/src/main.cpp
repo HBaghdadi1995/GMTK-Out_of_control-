@@ -6,9 +6,11 @@
 
 #include <stb_image.h>
 
+Shape* shape = nullptr;
+Texture* texture = nullptr;
+Shader* basicShader = nullptr;
 
-int main(int argc, char *argv[]){
-
+void Initialise() {
     Window::Instance();
     Window::Instance()->CreateWindow(640, 480, "Hello World");
 
@@ -17,28 +19,30 @@ int main(int argc, char *argv[]){
 
     //Graphics::Instance()->Load(GRAPHICS__BASICS);
 
-    Shape* shape = Shape::GenerateTile(0,14);
-    Texture* texture = Texture::GetSmileyTexture();
+    shape = Shape::GenerateTile(0, 14);
+    texture = Texture::GetSmileyTexture();
     texture->Bind();
 
-    Shader* basicShader = Shader::GenerateTexturedTileShaders();
+    basicShader = Shader::GenerateTexturedTileShaders();
     basicShader->Bind();
 
-    basicShader->setUniform("u_Texture",texture->getSlot());
+    basicShader->setUniform("u_Texture", texture->getSlot());
     basicShader->setUniform("u_Texture", texture->getSlot());
 
     Graphics::Instance()->EnableBlend();
-
-
     Graphics::CheckForError();
 
+}
+
+void Loop() {
     while (Window::Instance()->Update())
     {
-        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        glViewport(0, 0, 640, 480);
+        Graphics::Instance()->Update();
         shape->Draw();
     }
+}
+
+void Deinit() {
 
     delete basicShader;
     delete shape;
@@ -46,6 +50,14 @@ int main(int argc, char *argv[]){
 
     Graphics::Destroy();
     Window::Destroy();
+}
+
+
+int main(int argc, char *argv[]){
+
+    Initialise();
+    Loop();
+    Deinit();
 
     return 0;
 }

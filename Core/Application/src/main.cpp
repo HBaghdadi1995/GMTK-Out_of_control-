@@ -17,6 +17,8 @@ void Initialise() {
     Graphics::Instance();
     Graphics::Instance()->Bind(Window::Instance()->GetProcAddressFunction());
 
+    Window::Instance()->setVSync(true);
+
     //Graphics::Instance()->Load(GRAPHICS__BASICS);
 
     shape = Shape::GenerateTile(0, 14);

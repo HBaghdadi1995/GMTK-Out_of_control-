@@ -3,46 +3,8 @@
 #include <glad/glad.h>
 #include "Window.h"
 
-int main(int argc, char *argv[]){
-    GLFWwindow* window;
 
-    Window::Instance();
-
-    Window::Instance()->CreateWindow(640, 480, "Hello World");
-    
-    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-        assert(false);
-    }
-
-    GLuint buffer;
-
-    float positions[12] =
-    { -0.5f, 0.5f,
-      -0.5f, -0.5f,
-      0.5f, -0.5f,
-      0.5f, 0.5f,
-      -0.5f, 0.5f,
-      0.5f, -0.5f };
-
-    glGenBuffers(1, &buffer);
-    glBindBuffer(GL_ARRAY_BUFFER, buffer);
-    glBufferData(GL_ARRAY_BUFFER, 12 * sizeof(float), &positions, GL_STATIC_DRAW);
-
-
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(
-        0,                  // attribute 0. No particular reason for 0, but must match the layout in the shader.
-        2,                  // size
-        GL_FLOAT,           // type
-        GL_FALSE,           // normalized?
-        sizeof(float) * 2,                  // stride
-        0            // array buffer offset
-    );
-
-    if (!gladLoadGL()) {
-        assert(false);
-    }
-    glPointSize(32);
+void LoadShaders() {
 
     char* vertex_shader_source = "\n\
     #version 330 core\n\
@@ -79,6 +41,7 @@ int main(int argc, char *argv[]){
         GLchar message[1024];
         glGetShaderInfoLog(vshader, 1024, &log_length, message);
         std::cout << message;
+        assert(false);
     }
 
     GLuint fshader = glCreateShader(GL_FRAGMENT_SHADER);
@@ -92,7 +55,8 @@ int main(int argc, char *argv[]){
         GLsizei log_length = 0;
         GLchar message[1024];
         glGetShaderInfoLog(fshader, 1024, &log_length, message);
-        std::cout << "frag" << message;
+        std::cout << message;
+        assert(false);
     }
 
     GLuint program = glCreateProgram();
@@ -102,6 +66,50 @@ int main(int argc, char *argv[]){
     glLinkProgram(program);
 
     glUseProgram(program);
+}
+
+int main(int argc, char *argv[]){
+    GLFWwindow* window;
+
+    Window::Instance();
+
+    Window::Instance()->CreateWindow(640, 480, "Hello World");
+    
+    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+        assert(false);
+    }
+    if (!gladLoadGL()) {
+        assert(false);
+    }
+
+    GLuint buffer;
+
+    float positions[12] =
+    { -0.5f, 0.5f,
+      -0.5f, -0.5f,
+      0.5f, -0.5f,
+      0.5f, 0.5f,
+      -0.5f, 0.5f,
+      0.5f, -0.5f };
+
+    glGenBuffers(1, &buffer);
+    glBindBuffer(GL_ARRAY_BUFFER, buffer);
+    glBufferData(GL_ARRAY_BUFFER, 12 * sizeof(float), &positions, GL_STATIC_DRAW);
+
+
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(
+        0,                  // attribute 0. No particular reason for 0, but must match the layout in the shader.
+        2,                  // size
+        GL_FLOAT,           // type
+        GL_FALSE,           // normalized?
+        sizeof(float) * 2,                  // stride
+        0            // array buffer offset
+    );
+
+    LoadShaders();
+
+    glPointSize(32);
 
     while (Window::Instance()->Update())
     {

@@ -50,4 +50,14 @@ Window::~Window()
     glfwTerminate();
 }
 
+void Window::setVSync(bool on)
+{
+    if (on) {
+        glfwSwapInterval(1);
+    }
+    else {
+        glfwSwapInterval(0);
+    }
+}
+
 

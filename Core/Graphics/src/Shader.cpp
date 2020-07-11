@@ -34,6 +34,13 @@ Shader* Shader::GenerateTileShaders()
         std::string(SHADER_SRC) + std::string("basic.frag"));
 }
 
+Shader* Shader::GenerateTexturedTileShaders()
+{
+    return new Shader(
+        std::string(SHADER_SRC) + std::string("texturedTile.vert"),
+        std::string(SHADER_SRC) + std::string("texturedTile.frag"));
+}
+
 void Shader::LoadShaders(std::string vertex, std::string fragment)
 {
 
@@ -95,4 +102,17 @@ std::string Shader::LoadFile(std::string address)
     }
 
     return data;
+}
+
+GLint Shader::getUniformLocation(std::string uniformName)
+{
+    GLint location = 0;
+    if (uniformLocationCache.find(uniformName) != uniformLocationCache.end()) {
+        location = uniformLocationCache[uniformName];
+    }
+    else {
+        location = glGetUniformLocation(m_Program,uniformName.c_str());
+        uniformLocationCache.insert({uniformName, location});
+    }
+    return location;
 }

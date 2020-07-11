@@ -22,12 +22,21 @@ int main(int argc, char *argv[]){
 
     Shape* shape = Shape::GenerateTile(0,14);
     Texture* texture = new Texture();
+    texture->Bind();
 
-    Shader* basicShader = Shader::GenerateTileShaders();
+    Shader* basicShader = Shader::GenerateTexturedTileShaders();
     basicShader->Bind();
+
+    basicShader->setUniform("u_Texture",texture->getSlot());
+    basicShader->setUniform("u_Texture", texture->getSlot());
 
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+    while (GLenum error = glGetError()) {
+        std::cerr << "OPENGL ERROR: " << error << "\n";
+        assert(false);
+    }
 
     while (Window::Instance()->Update())
     {

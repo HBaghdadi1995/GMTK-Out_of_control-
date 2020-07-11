@@ -44,6 +44,65 @@ int main(int argc, char *argv[]){
     }
     glPointSize(32);
 
+    char* vertex_shader_source = "\n\
+    #version 330 core\n\
+    \n\
+        layout(location = 0) in vec4 position;\n\
+    \n\
+        void main()\n\
+    {\n\
+        gl_Position = position;\n\
+    };";
+
+    char* fragment_shader_source = "\n\
+    #version 330 core\n\
+    \n\
+    layout(location = 0) out vec4 color;\n\
+    \n\
+        uniform vec4 u_Color;\n\
+    \n\
+    void main()\n\
+    {\n\
+        \n\
+        color = vec4(1, 0, 0, 1);\n\
+    };";
+
+    GLuint vshader = glCreateShader(GL_VERTEX_SHADER);
+    glShaderSource(vshader, 1, &vertex_shader_source, NULL); // vertex_shader_source is a GLchar* containing glsl shader source code
+    glCompileShader(vshader);
+
+    GLint vertex_compiled;
+    glGetShaderiv(vshader, GL_COMPILE_STATUS, &vertex_compiled);
+    if (vertex_compiled != GL_TRUE)
+    {
+        GLsizei log_length = 0;
+        GLchar message[1024];
+        glGetShaderInfoLog(vshader, 1024, &log_length, message);
+        std::cout << message;
+    }
+
+    GLuint fshader = glCreateShader(GL_FRAGMENT_SHADER);
+    glShaderSource(fshader, 1, &fragment_shader_source, NULL); // fragment_shader_source is a GLchar* containing glsl shader source code
+    glCompileShader(fshader);
+
+    GLint fragment_compiled;
+    glGetShaderiv(fshader, GL_COMPILE_STATUS, &fragment_compiled);
+    if (fragment_compiled != GL_TRUE)
+    {
+        GLsizei log_length = 0;
+        GLchar message[1024];
+        glGetShaderInfoLog(fshader, 1024, &log_length, message);
+        std::cout << "frag" << message;
+    }
+
+    GLuint program = glCreateProgram();
+
+    glAttachShader(program, vshader);
+    glAttachShader(program, fshader);
+    glLinkProgram(program);
+
+    glUseProgram(program);
+
     while (Window::Instance()->Update())
     {
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);

@@ -372,3 +372,5 @@ External/glew/config/
 External/glew/doc/
 
 *.in
+
+Dist/

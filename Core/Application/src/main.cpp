@@ -1,71 +1,8 @@
 #include <iostream>
 #include <fstream>
 
-#include <glad/glad.h>
+#include "Graphics.h"
 #include "Window.h"
-
-#define SHADER_SRC "../../src/Shaders/"
-
-std::string LoadFile(std::string address) {
-    std::ifstream file;
-    file.open(address);
-    
-    std::string data = "";
-
-    char c = file.get();
-
-    while (file.good()) {
-        data += c;
-        c = file.get();
-    }
-
-    return data;
-}
-
-void LoadShaders() {
-
-    const char* vertex_shader_source = LoadFile( std::string(SHADER_SRC) +  std::string("basic.vert")).c_str();
-
-    const char* fragment_shader_source = LoadFile(std::string(SHADER_SRC) + std::string("basic.frag")).c_str();
-
-    GLuint vshader = glCreateShader(GL_VERTEX_SHADER);
-    glShaderSource(vshader, 1, &vertex_shader_source, NULL); // vertex_shader_source is a GLchar* containing glsl shader source code
-    glCompileShader(vshader);
-
-    GLint vertex_compiled;
-    glGetShaderiv(vshader, GL_COMPILE_STATUS, &vertex_compiled);
-    if (vertex_compiled != GL_TRUE)
-    {
-        GLsizei log_length = 0;
-        GLchar message[1024];
-        glGetShaderInfoLog(vshader, 1024, &log_length, message);
-        std::cout << message;
-        assert(false);
-    }
-
-    GLuint fshader = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(fshader, 1, &fragment_shader_source, NULL); // fragment_shader_source is a GLchar* containing glsl shader source code
-    glCompileShader(fshader);
-
-    GLint fragment_compiled;
-    glGetShaderiv(fshader, GL_COMPILE_STATUS, &fragment_compiled);
-    if (fragment_compiled != GL_TRUE)
-    {
-        GLsizei log_length = 0;
-        GLchar message[1024];
-        glGetShaderInfoLog(fshader, 1024, &log_length, message);
-        std::cout << message;
-        assert(false);
-    }
-
-    GLuint program = glCreateProgram();
-
-    glAttachShader(program, vshader);
-    glAttachShader(program, fshader);
-    glLinkProgram(program);
-
-    glUseProgram(program);
-}
 
 int main(int argc, char *argv[]){
     GLFWwindow* window;
@@ -106,9 +43,8 @@ int main(int argc, char *argv[]){
         0            // array buffer offset
     );
 
-    LoadShaders();
-
-    glPointSize(32);
+    Shader* basicShader = Shader::GenerateBasicShaders();
+    basicShader->Bind();
 
     while (Window::Instance()->Update())
     {
@@ -117,6 +53,8 @@ int main(int argc, char *argv[]){
         glViewport(0, 0, 640, 480);
         glDrawArrays(GL_TRIANGLES, 0, 6);
     }
+
+    delete basicShader;
 
     glfwTerminate();
     return 0;

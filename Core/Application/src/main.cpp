@@ -16,14 +16,17 @@ int main(int argc, char *argv[]){
 
     GLuint buffer;
 
-    float positions[6] =
-    { 0.0f, 0.5f,
+    float positions[12] =
+    { -0.5f, 0.5f,
       -0.5f, -0.5f,
+      0.5f, -0.5f,
+      0.5f, 0.5f,
+      -0.5f, 0.5f,
       0.5f, -0.5f };
 
     glGenBuffers(1, &buffer);
     glBindBuffer(GL_ARRAY_BUFFER, buffer);
-    glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(float), &positions, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, 12 * sizeof(float), &positions, GL_STATIC_DRAW);
 
 
     glEnableVertexAttribArray(0);
@@ -32,7 +35,7 @@ int main(int argc, char *argv[]){
         2,                  // size
         GL_FLOAT,           // type
         GL_FALSE,           // normalized?
-        sizeof(float),                  // stride
+        sizeof(float) * 2,                  // stride
         0            // array buffer offset
     );
 
@@ -46,7 +49,7 @@ int main(int argc, char *argv[]){
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glViewport(0, 0, 640, 480);
-        glDrawArrays(GL_POINTS, 0, 3);
+        glDrawArrays(GL_TRIANGLES, 0, 6);
     }
 
     glfwTerminate();

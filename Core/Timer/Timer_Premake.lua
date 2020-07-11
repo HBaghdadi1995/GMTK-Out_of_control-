@@ -1,4 +1,4 @@
-project "Graphics"
+project "Timer"
     kind "StaticLib"
     language "C++"
 
@@ -7,8 +7,3 @@ project "Graphics"
         "**.cpp",
         "*.lua"
     }
-    
-    --Third party
-    importGLAD()
-    importSTB()
-    importTimer()

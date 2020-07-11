@@ -8,3 +8,8 @@ function importGraphics()
     includedirs {"../Graphics/src"}
     links{"Graphics"}
 end
+
+function importTimer()
+    includedirs {"../Timer/src"}
+    links{"Timer"}
+end

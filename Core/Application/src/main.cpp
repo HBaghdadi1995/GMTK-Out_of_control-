@@ -6,18 +6,16 @@
 
 #include <stb_image.h>
 
+
 int main(int argc, char *argv[]){
 
     Window::Instance();
-
     Window::Instance()->CreateWindow(640, 480, "Hello World");
-    
-    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-        assert(false);
-    }
-    if (!gladLoadGL()) {
-        assert(false);
-    }
+
+    Graphics::Instance();
+    Graphics::Instance()->Bind(Window::Instance()->GetProcAddressFunction());
+
+    //Graphics::Instance()->Load(GRAPHICS__BASICS);
 
     Shape* shape = Shape::GenerateTile(0,14);
     Texture* texture = Texture::GetSmileyTexture();
@@ -29,13 +27,10 @@ int main(int argc, char *argv[]){
     basicShader->setUniform("u_Texture",texture->getSlot());
     basicShader->setUniform("u_Texture", texture->getSlot());
 
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    Graphics::Instance()->EnableBlend();
 
-    while (GLenum error = glGetError()) {
-        std::cerr << "OPENGL ERROR: " << error << "\n";
-        assert(false);
-    }
+
+    Graphics::CheckForError();
 
     while (Window::Instance()->Update())
     {
@@ -49,6 +44,7 @@ int main(int argc, char *argv[]){
     delete shape;
     delete texture;
 
+    Graphics::Destroy();
     Window::Destroy();
 
     return 0;

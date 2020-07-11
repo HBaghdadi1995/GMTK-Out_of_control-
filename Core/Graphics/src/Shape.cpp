@@ -10,12 +10,12 @@ Shape::Shape(Vertex2d* verticies, unsigned int count):
 
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(
-        0,                          // attribute 0. No particular reason for 0, but must match the layout in the shader.
-        Vertex2d::LocationCount(),  // size
-        GL_FLOAT,                   // type
-        GL_FALSE,                   // normalized?
-        sizeof(Vertex2d),           // stride
-        0                           // array buffer offset
+        0,                  // attribute 0. No particular reason for 0, but must match the layout in the shader.
+        Vertex2d::count(),  // size
+        GL_FLOAT,           // type
+        GL_FALSE,           // normalized?
+        sizeof(Vertex2d),   // stride
+        0                   // array buffer offset
     );
 }
 
@@ -45,12 +45,12 @@ Shape* Shape::GenerateSquare()
 {
     unsigned int count = 6;
     Vertex2d* verticies = new Vertex2d[6];
-    verticies[0] = {-0.5f,  0.5f, 0.0f, 0.0f};
-    verticies[1] = {-0.5f, -0.5f, 0.0f, 1.0f};
-    verticies[2] = { 0.5f, -0.5f, 1.0f, 1.0f};
-    verticies[3] = { 0.5f,  0.5f, 1.0f, 0.0f};
-    verticies[4] = {-0.5f,  0.5f, 0.0f, 0.0f};
-    verticies[5] = { 0.5f, -0.5f, 1.0f, 1.0f};
+    verticies[0] = {-0.5f,  0.5f};
+    verticies[1] = {-0.5f, -0.5f};
+    verticies[2] = { 0.5f, -0.5f};
+    verticies[3] = { 0.5f,  0.5f};
+    verticies[4] = {-0.5f,  0.5f};
+    verticies[5] = { 0.5f, -0.5f};
 
 
 	return new Shape(verticies, count);
@@ -60,12 +60,12 @@ Shape* Shape::GenerateTile(float x, float y)
 {
     unsigned int count = 6;
     Vertex2d* verticies = new Vertex2d[6];
-    verticies[0] = { x * 32.0f          ,  y * 32.0f + 32.0f , 0.0f, 0.0f};
-    verticies[1] = { x * 32.0f          ,  y * 32.0f         , 0.0f, 1.0f};
-    verticies[2] = { x * 32.0f + 32.0f  ,  y * 32.0f         , 1.0f, 1.0f};
-    verticies[3] = { x * 32.0f + 32.0f  ,  y * 32.0f + 32.0f , 1.0f, 0.0f};
-    verticies[4] = { x * 32.0f          ,  y * 32.0f + 32.0f , 0.0f, 0.0f};
-    verticies[5] = { x * 32.0f + 32.0f  ,  y * 32.0f         , 1.0f, 1.0f};
+    verticies[0] = { x * 32.0f          ,  y * 32.0f + 32.0f };
+    verticies[1] = { x * 32.0f          ,  y * 32.0f         };
+    verticies[2] = { x * 32.0f + 32.0f  ,  y * 32.0f         };
+    verticies[3] = { x * 32.0f + 32.0f  ,  y * 32.0f + 32.0f };
+    verticies[4] = { x * 32.0f          ,  y * 32.0f + 32.0f };
+    verticies[5] = { x * 32.0f + 32.0f  ,  y * 32.0f         };
 
 
     return new Shape(verticies, count);

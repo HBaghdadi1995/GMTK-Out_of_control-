@@ -16,6 +16,7 @@ project "Application"
     --Core
     importWindow()
     importGraphics()
+    importTimer()
 
     filter "configurations:Dist"
         defines { "NDEBUG"}

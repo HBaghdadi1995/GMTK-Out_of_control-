@@ -2,6 +2,7 @@
 #include <fstream>
 
 #include "Graphics.h"
+#include "Timer.h"
 #include "Window.h"
 
 #include <stb_image.h>

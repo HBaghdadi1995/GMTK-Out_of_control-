@@ -11,4 +11,3 @@ project "Graphics"
     --Third party
     importGLAD()
     importSTB()
-    importTimer()

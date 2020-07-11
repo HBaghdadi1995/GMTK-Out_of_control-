@@ -9,6 +9,8 @@ struct Vertex2d {
 
 	const static inline unsigned int LocationCount() { return 2; }
 	const static inline unsigned int TextureCount() { return 2; }
+	const static inline GLvoid* LocationOffset() { return (GLvoid*)0; }
+	const static inline GLvoid* TextureOffset() { return (GLvoid*)(2* sizeof(float)); }
 };
 
 class Shape

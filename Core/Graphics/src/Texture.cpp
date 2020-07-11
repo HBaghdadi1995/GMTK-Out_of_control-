@@ -3,6 +3,7 @@
 Texture::Texture(std::string texAddress):
 	m_Slot(0)
 {
+	stbi_set_flip_vertically_on_load(1);
 	m_CpuBuffer = stbi_load(texAddress.c_str(), &m_Width, &m_Height, &m_Channels, 0);
 
 	if (!m_CpuBuffer) {

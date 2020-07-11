@@ -11,11 +11,21 @@ Shape::Shape(Vertex2d* verticies, unsigned int count):
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(
         0,                          // attribute 0. No particular reason for 0, but must match the layout in the shader.
-        Vertex2d::LocationCount(),  // size
+        Vertex2d::LocationCount(),  // count
         GL_FLOAT,                   // type
         GL_FALSE,                   // normalized?
         sizeof(Vertex2d),           // stride
-        0                           // array buffer offset
+        Vertex2d::LocationOffset()  // array buffer offset
+    );
+
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(
+        1,                          // attribute 0. No particular reason for 0, but must match the layout in the shader.
+        Vertex2d::TextureCount(),   // count
+        GL_FLOAT,                   // type
+        GL_FALSE,                   // normalized?
+        sizeof(Vertex2d),           // stride
+        Vertex2d::TextureOffset()  // array buffer offset
     );
 }
 

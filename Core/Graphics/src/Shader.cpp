@@ -92,6 +92,10 @@ std::string Shader::LoadFile(std::string address)
     std::ifstream file;
     file.open(address);
 
+    if (file.fail()) {
+        assert(false);
+    }
+
     std::string data = "";
 
     char c = file.get();

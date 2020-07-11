@@ -21,7 +21,7 @@ int main(int argc, char *argv[]){
     }
 
     Shape* shape = Shape::GenerateTile(0,14);
-    Texture* texture = Texture::GetWhiteTexture();
+    Texture* texture = Texture::GetSmileyTexture();
     texture->Bind();
 
     Shader* basicShader = Shader::GenerateTexturedTileShaders();

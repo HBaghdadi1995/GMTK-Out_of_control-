@@ -27,6 +27,7 @@ workspace "OutOfControl"
 
     group"Core"
         dofile "Core/Window/Window_Premake.lua"
+        dofile "Core/Graphics/Graphics_Premake.lua"
         dofile "Core/Application/Application_Premake.lua"
 
     group"Src"

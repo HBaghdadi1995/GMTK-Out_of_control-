@@ -2,7 +2,6 @@
 SRC_DIR      = "./src/"
 INCLUDE_DIR      = "./include/"
 
-group"Third Party"
 project "GLFW"
 	kind "StaticLib"
 	language "C"

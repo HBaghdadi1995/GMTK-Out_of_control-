@@ -14,6 +14,7 @@ project "Application"
 
     --Core
     importWindow()
+    importGraphics()
 
     --includedirs {"../Window/src"}
     --links{"Window"}

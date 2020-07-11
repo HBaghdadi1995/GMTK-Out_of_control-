@@ -28,8 +28,11 @@ private:
 	int m_Slot;
 
 public:
-	Texture();
+	Texture(std::string texAddress);
 	~Texture();
+
+	static Texture* GetWhiteTexture();
+	static Texture* GetSmileyTexture();
 
 	void Bind();
 	void Unbind();

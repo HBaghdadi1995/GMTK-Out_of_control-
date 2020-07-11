@@ -3,7 +3,6 @@
 
 #include "Graphics.h"
 #include "Window.h"
-#include "Shape.h"
 
 int main(int argc, char *argv[]){
     GLFWwindow* window;
@@ -18,31 +17,6 @@ int main(int argc, char *argv[]){
     if (!gladLoadGL()) {
         assert(false);
     }
-
-    /*GLuint buffer;
-
-    float positions[12] =
-    { -0.5f, 0.5f,
-      -0.5f, -0.5f,
-      0.5f, -0.5f,
-      0.5f, 0.5f,
-      -0.5f, 0.5f,
-      0.5f, -0.5f };
-
-    glGenBuffers(1, &buffer);
-    glBindBuffer(GL_ARRAY_BUFFER, buffer);
-    glBufferData(GL_ARRAY_BUFFER, 12 * sizeof(float), &positions, GL_STATIC_DRAW);
-
-
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(
-        0,                  // attribute 0. No particular reason for 0, but must match the layout in the shader.
-        2,                  // size
-        GL_FLOAT,           // type
-        GL_FALSE,           // normalized?
-        sizeof(float) * 2,                  // stride
-        0            // array buffer offset
-    );*/
 
     Shape* shape = Shape::GenerateSquare();
 

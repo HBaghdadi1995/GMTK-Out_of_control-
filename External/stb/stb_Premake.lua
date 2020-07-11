@@ -1,4 +1,4 @@
-project "Graphics"
+project "stb"
     kind "StaticLib"
     language "C++"
 
@@ -7,7 +7,3 @@ project "Graphics"
         "**.cpp",
         "*.lua"
     }
-    
-    --Third party
-    importGLAD()
-    importSTB()

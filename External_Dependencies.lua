@@ -8,3 +8,8 @@ function importGLAD()
     includedirs {"../../External/glad/include"}
     links{"glad"}
 end
+
+function importSTB()
+    includedirs {"../../External/stb/src"}
+    links{"stb"}
+end

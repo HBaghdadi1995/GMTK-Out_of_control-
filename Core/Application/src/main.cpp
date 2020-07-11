@@ -4,6 +4,8 @@
 #include "Graphics.h"
 #include "Window.h"
 
+#include <stb_image.h>
+
 int main(int argc, char *argv[]){
     GLFWwindow* window;
 
@@ -19,6 +21,7 @@ int main(int argc, char *argv[]){
     }
 
     Shape* shape = Shape::GenerateTile(0,14);
+    Texture* texture = new Texture();
 
     Shader* basicShader = Shader::GenerateTileShaders();
     basicShader->Bind();
@@ -36,6 +39,7 @@ int main(int argc, char *argv[]){
 
     delete basicShader;
     delete shape;
+    delete texture;
 
     glfwTerminate();
     /*while (GLenum error = glGetError()) {

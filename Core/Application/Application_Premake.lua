@@ -11,6 +11,7 @@ project "Application"
     --Third party
     importGLFW()
     importGLAD()
+    importSTB()
 
     --Core
     importWindow()

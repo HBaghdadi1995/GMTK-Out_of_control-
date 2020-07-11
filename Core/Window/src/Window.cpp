@@ -12,7 +12,6 @@ Window* Window::Instance()
 void Window::Destroy()
 {
     delete m_Instance;
-    glfwTerminate();
 }
 
 void Window::CreateWindow(int width, int height, std::string name)
@@ -48,7 +47,6 @@ Window::Window()
 
 Window::~Window()
 {
-    delete m_Window;
     glfwTerminate();
 }
 

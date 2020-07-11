@@ -1,5 +1,7 @@
 #include "Graphics.h"
 
+Graphics* Graphics::m_Instance = nullptr;
+
 Graphics::Graphics()
 {
 }

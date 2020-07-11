@@ -1,33 +1,32 @@
 #include <iostream>
+#include <fstream>
 
 #include <glad/glad.h>
 #include "Window.h"
 
+#define SHADER_SRC "../../src/Shaders/"
+
+std::string LoadFile(std::string address) {
+    std::ifstream file;
+    file.open(address);
+    
+    std::string data = "";
+
+    char c = file.get();
+
+    while (file.good()) {
+        data += c;
+        c = file.get();
+    }
+
+    return data;
+}
 
 void LoadShaders() {
 
-    char* vertex_shader_source = "\n\
-    #version 330 core\n\
-    \n\
-        layout(location = 0) in vec4 position;\n\
-    \n\
-        void main()\n\
-    {\n\
-        gl_Position = position;\n\
-    };";
+    const char* vertex_shader_source = LoadFile( std::string(SHADER_SRC) +  std::string("basic.vert")).c_str();
 
-    char* fragment_shader_source = "\n\
-    #version 330 core\n\
-    \n\
-    layout(location = 0) out vec4 color;\n\
-    \n\
-        uniform vec4 u_Color;\n\
-    \n\
-    void main()\n\
-    {\n\
-        \n\
-        color = vec4(1, 0, 0, 1);\n\
-    };";
+    const char* fragment_shader_source = LoadFile(std::string(SHADER_SRC) + std::string("basic.frag")).c_str();
 
     GLuint vshader = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(vshader, 1, &vertex_shader_source, NULL); // vertex_shader_source is a GLchar* containing glsl shader source code

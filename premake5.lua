@@ -28,4 +28,7 @@ workspace "OutOfControl"
     group"Core"
         dofile "Core/Window/Window_Premake.lua"
         dofile "Core/Application/Application_Premake.lua"
+
+    group"Src"
+        dofile "Src/Shaders/Shaders_Premake.lua"
         

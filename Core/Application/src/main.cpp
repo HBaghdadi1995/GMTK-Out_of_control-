@@ -6,11 +6,11 @@
 #include "Window.h"
 #include "InputManager.h"
 
-#include "GameObject.h"
+#include "PlayerObject.h"
 
 #include <stb_image.h>
 
-GameObject* player;
+PlayerObject* player;
 
 void Initialise() {
     Window::Instance();
@@ -32,9 +32,10 @@ void Initialise() {
     Graphics::Instance()->EnableBlend();
     Graphics::CheckForError();
 
-    player = new GameObject();
+    player = new PlayerObject();
     player->setGraphicalObject(Graphics::Instance()->getGraphicalObject(eOBJECT_PLAYER));
     player->SetPosition(19, 7);
+    player->BindControlls();
 }
 
 void Loop() {

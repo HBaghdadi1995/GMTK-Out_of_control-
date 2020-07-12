@@ -60,8 +60,13 @@ void Texture::Unbind()
 
 float* Texture::getTexCoords(int x, int y)
 {
-	float ratio[2] = { static_cast<float>(tileSize) / static_cast<float>(m_Width), static_cast<float>(tileSize)/ static_cast<float>(m_Height) };
-	float texCoords[4] = { x * ratio[0], (x + 1) * ratio[0], y * ratio[1], (y + 1) * ratio[1] };
+	y = static_cast<float>(m_Height) / static_cast<float>(tileSize) - y;
+	float ratio[2] = { static_cast<float>(tileSize) / static_cast<float>(m_Width), static_cast<float>(tileSize) / static_cast<float>(m_Height) };
+	float* texCoords = new float[4];
+	texCoords[0] = x* ratio[0];
+	texCoords[1] = (x + 1)* ratio[0];
+	texCoords[2] = (y-1) * ratio[1];
+	texCoords[3] = (y) * ratio[1];
 	return texCoords;
 }
 

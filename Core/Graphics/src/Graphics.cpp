@@ -80,7 +80,9 @@ void Graphics::BuildTiles()
 {
     for (int i = 0; i < 20; ++i) {
         for (int j = 0; j < 15; ++j) {
-            m_GraphicalObjects.push_back(new GraphicalObject(i, j, m_Shaders[eSHADER_TEXTURED_TILES], { m_Textures[eTEXTURES_SCRATCH], 0.0f, 1.0f, 0.0f, 1.0f }));
+            float* texCoords = m_Textures[eTEXTURES_SCRATCH]->getTexCoords(mapLayout[(j * 20 + i) * 2], mapLayout[(j * 20 + i) * 2 + 1]);
+            m_GraphicalObjects.push_back(new GraphicalObject(i, j, m_Shaders[eSHADER_TEXTURED_TILES], { m_Textures[eTEXTURES_SCRATCH], texCoords[0], texCoords[1], texCoords[2], texCoords[3] }));
+            delete[] texCoords;
         }
     }
 }

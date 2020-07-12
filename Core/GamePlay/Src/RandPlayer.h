@@ -15,6 +15,7 @@ public:
 	bool ShouldLose();
 
 	unsigned long long int score = 0;
+	float speed = 0.01f;
 
 protected:
 	virtual void MoveUp();
@@ -34,5 +35,4 @@ protected:
 	unsigned int m_LeftVal = 0x00;
 	unsigned int m_RightVal = 0x02;
 
-	float speed = 0.01f;
 };

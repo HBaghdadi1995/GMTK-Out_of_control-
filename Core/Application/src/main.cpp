@@ -30,7 +30,7 @@ void Initialise() {
     Window::Instance()->setVSync(true);
 
     Graphics::Instance()->EnableBlend();
-    Graphics::CheckForError();
+    //Graphics::CheckForError();
 
     player = new RandPlayerObject();
     player->setGraphicalObject(Graphics::Instance()->getGraphicalObject(eOBJECT_PLAYER));
@@ -41,6 +41,9 @@ void Initialise() {
 void Loop() {
 
     bool shouldLose = false;
+    player->SetPosition(10, 7);
+    player->score = 0;
+    player->speed = 0.01f;
 
     while (Window::Instance()->Update() && InputManager::Instance()->PollEvents() && !shouldLose)
     {
@@ -49,13 +52,28 @@ void Loop() {
         shouldLose = player->ShouldLose();
     }
 
-    std::cout << "CONGRATZ, your score is : " << player->score << "\n";
-    system("pause");
 }
 
-void Deinit() {
-    Graphics::CheckForError();
+int main(int argc, char* argv[]);
 
+void Deinit() {
+deinit_begin:
+
+    glfwHideWindow(Window::Instance()->getWindowObject());
+
+    std::cout << "CONGRATZ, your score is : " << player->score << "\n";
+    std::cout << "Type in r to reset, and anything else to leave" << "\n";
+    std::string reset;
+    std::cin >> reset;
+    
+
+    if (reset.size() == 1 && reset.c_str()[0] == 'r') {
+        glfwShowWindow(Window::Instance()->getWindowObject());
+        Loop();
+        goto deinit_begin;
+    }
+
+    delete player;
     Graphics::Destroy();
     Window::Destroy();
 }

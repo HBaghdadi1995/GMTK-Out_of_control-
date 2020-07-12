@@ -4,13 +4,6 @@ Timer::Timer(int waitTime_ms):
 	m_WaitTime(waitTime_ms)
 {
 	Timer* t = nullptr;
-	if (t) {
-		if (t->check()) {
-			func();
-			delete t;
-			t = nullptr;
-		}
-	}
 }
 
 Timer::~Timer()
@@ -27,7 +20,8 @@ bool Timer::check()
 	if (!m_Init) {
 		init();
 	}
-	if (m_Init + m_WaitTime > CURRENT_TIME) {
+	if (m_Init + m_WaitTime < CURRENT_TIME) {
+		long long x = CURRENT_TIME;
 		return true;
 	}
 	else
@@ -36,28 +30,32 @@ bool Timer::check()
 	}
 }
 
-void Timer::Wait(Timer* t, std::function<void(void)> func)
+void Timer::Wait(Timer** t, std::function<void(void)> func)
 {
-	if (t) {
-		if (t->check()) {
+	if ((*t) != nullptr) {
+		if ((*t)->check()) {
 			func();
-			delete t;
-			t = nullptr;
+			delete (*t);
+			(*t) = nullptr;
 		}
 	}
 }
 
-void Timer::WaitRepeat(Timer* t, std::function<void(void)> func, int waitTime)
+void Timer::WaitRepeat(Timer** t, std::function<void(void)> func, int waitTime)
 {
-	if (t) {
-		if (t->check()) {
+	if ((*t) != nullptr) {
+		if ((*t)->check()) {
 			func();
-			delete t;
-			t = nullptr;
+			delete (*t);
+			(*t) = nullptr;
+
+
+			(*t) = new Timer(waitTime);
+			(*t)->init();
 		}
 	}
 	else {
-		t = new Timer(waitTime);
-		t->init();
+		(*t) = new Timer(waitTime);
+		(*t)->init();
 	}
 }

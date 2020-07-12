@@ -4,7 +4,7 @@
 #include <functional>
 #define CURRENT_TIME std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::time_point_cast<std::chrono::milliseconds>(std::chrono::system_clock::now()).time_since_epoch()).count()
 
-#define LAMBDA(x) [](void){x();}
+#define LAMBDA(x) [](){x}
 
 class Timer
 {
@@ -15,8 +15,8 @@ public:
 	void init();
 	bool check();
 
-	static void Wait(Timer* t, std::function<void(void)> func);
-	static void WaitRepeat(Timer* t, std::function<void(void)> func, int waitTime);
+	static void Wait(Timer** t, std::function<void(void)> func);
+	static void WaitRepeat(Timer** t, std::function<void(void)> func, int waitTime);
 
 private:
 	unsigned long long int m_Init = 0;

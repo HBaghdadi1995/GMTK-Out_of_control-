@@ -5,6 +5,9 @@
 #include <iostream>
 #include <unordered_map>
 
+#include <string>
+#include <sstream>
+
 #include <glad/glad.h>
 
 #ifdef DIST
@@ -37,7 +40,7 @@ public:
 private:
     void LoadShaders(std::string vertAddress, std::string fragAddress);
     void compileShader(std::string address, GLuint type);
-    static std::string LoadFile(std::string address);
+    static void LoadFile(std::string address, std::string &data);
     GLint getUniformLocation(std::string uniformName);
 public:
 

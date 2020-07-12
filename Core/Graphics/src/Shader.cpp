@@ -65,7 +65,9 @@ void Shader::LoadShaders(std::string vertex, std::string fragment)
 
 void Shader::compileShader(std::string address, GLuint type)
 {
-    const char* src = LoadFile(address).c_str();
+    std::string data = "";
+    LoadFile(address, data);
+    const char* src = data.c_str();
 
     GLuint shader = glCreateShader(type);
     glShaderSource(shader, 1, &src, NULL); // vertex_shader_source is a GLchar* containing glsl shader source code
@@ -87,25 +89,22 @@ void Shader::compileShader(std::string address, GLuint type)
     glDeleteShader(shader);
 }
 
-std::string Shader::LoadFile(std::string address)
+void Shader::LoadFile(std::string address, std::string& data)
 {
-    std::ifstream file;
-    file.open(address);
+    std::ifstream file(address);
 
-    if (file.fail()) {
-        assert(false);
+    if (!file.is_open()) {
+        std::cerr << "Error: " << strerror(errno);;
     }
 
-    std::string data = "";
+    std::string line = "";
 
-    char c = file.get();
-
-    while (file.good()) {
-        data += c;
-        c = file.get();
+    while (getline(file,line)) {
+        data += line;
+        data += "\n";
     }
 
-    return data;
+    return;
 }
 
 GLint Shader::getUniformLocation(std::string uniformName)

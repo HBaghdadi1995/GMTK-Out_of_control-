@@ -44,7 +44,7 @@ void Initialise() {
 
 void Loop() {
 
-    while (InputManager::Instance()->PollEvents())
+    while (Window::Instance()->Update() && InputManager::Instance()->PollEvents())
     {
         Graphics::Instance()->Update();
         graphicalObject->Draw();

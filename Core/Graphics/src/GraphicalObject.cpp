@@ -1,0 +1,24 @@
+#include "GraphicalObject.h"
+
+GraphicalObject::GraphicalObject(float xCoord, float yCoord, Shader* shader, AssociatedTexture associatedTexture):
+	m_XCoord(xCoord), m_YCoord(yCoord), m_AssociatedShader(shader), m_AssociatedTexture(associatedTexture)
+
+{
+	m_AssociatedShape = Shape::GenerateTile(m_XCoord, m_YCoord, m_AssociatedTexture.xBegin, m_AssociatedTexture.xEnd, m_AssociatedTexture.yBegin, m_AssociatedTexture.yEnd);
+	
+}
+
+GraphicalObject::~GraphicalObject()
+{
+}
+
+void GraphicalObject::Draw()
+{
+	m_AssociatedTexture.texture->Bind();
+
+	m_AssociatedShader->Bind();
+	m_AssociatedShader->setUniform("u_Texture", m_AssociatedTexture.texture->getSlot());
+	
+	m_AssociatedShape->Bind();
+	m_AssociatedShape->Draw();
+}

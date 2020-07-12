@@ -80,3 +80,18 @@ Shape* Shape::GenerateTile(float x, float y)
 
     return new Shape(verticies, count);
 }
+
+Shape* Shape::GenerateTile(float x, float y, float xBegin, float xEnd, float yBegin, float yEnd)
+{
+    unsigned int count = 6;
+    Vertex2d* verticies = new Vertex2d[6];
+    verticies[0] = { x * 32.0f          ,  y * 32.0f + 32.0f , xBegin , yBegin };
+    verticies[1] = { x * 32.0f          ,  y * 32.0f         , xBegin , yEnd   };
+    verticies[2] = { x * 32.0f + 32.0f  ,  y * 32.0f         , xEnd   , yEnd   };
+    verticies[3] = { x * 32.0f + 32.0f  ,  y * 32.0f + 32.0f , xEnd   , yBegin };
+    verticies[4] = { x * 32.0f          ,  y * 32.0f + 32.0f , xBegin , yBegin };
+    verticies[5] = { x * 32.0f + 32.0f  ,  y * 32.0f         , xEnd   , yEnd   };
+
+
+    return new Shape(verticies, count);
+}

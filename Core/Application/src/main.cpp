@@ -7,7 +7,7 @@
 
 #include <stb_image.h>
 
-Shape* shape = nullptr;
+GraphicalObject* graphicalObject = nullptr;
 Texture* texture = nullptr;
 Shader* basicShader = nullptr;
 
@@ -22,7 +22,6 @@ void Initialise() {
 
     //Graphics::Instance()->Load(GRAPHICS__BASICS);
 
-    shape = Shape::GenerateTile(0, 14);
     texture = Texture::GetSmileyTexture();
     texture->Bind();
 
@@ -30,6 +29,8 @@ void Initialise() {
     basicShader->Bind();
 
     basicShader->setUniform("u_Texture", texture->getSlot());
+
+    graphicalObject = new GraphicalObject(0, 14, basicShader, {texture, 0.0f, 1.0f, 0.0f, 1.0f});
 
     Graphics::Instance()->EnableBlend();
     Graphics::CheckForError();
@@ -40,14 +41,14 @@ void Loop() {
     while (Window::Instance()->Update())
     {
         Graphics::Instance()->Update();
-        shape->Draw();
+        graphicalObject->Draw();
     }
 }
 
 void Deinit() {
 
     delete basicShader;
-    delete shape;
+    delete graphicalObject;
     delete texture;
 
     Graphics::Destroy();

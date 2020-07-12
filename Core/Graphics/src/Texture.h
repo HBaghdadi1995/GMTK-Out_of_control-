@@ -26,6 +26,7 @@ private:
 	unsigned char* m_CpuBuffer = nullptr;
 	GLuint m_GpuBuffer;
 	int m_Slot;
+	static int n_slots;
 
 public:
 	Texture(std::string texAddress);

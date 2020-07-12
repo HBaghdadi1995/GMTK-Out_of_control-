@@ -37,13 +37,14 @@ Shape::~Shape()
 
 void Shape::Draw()
 {
-    glBindBuffer(GL_ARRAY_BUFFER, m_VertexBuffer);
+    Bind();
     glDrawArrays(GL_TRIANGLES, 0, m_Count);
 }
 
 void Shape::Bind()
 {
     glBindBuffer(GL_ARRAY_BUFFER, m_VertexBuffer);
+    glBufferData(GL_ARRAY_BUFFER, m_Count * sizeof(Vertex2d), m_Verticies, GL_STATIC_DRAW);
 }
 
 void Shape::Unbind()
@@ -113,8 +114,6 @@ void Shape::setTileCoords(float x, float y)
     m_Verticies[3].y = y * 32.0f + 32.0f ;
     m_Verticies[4].y = y * 32.0f + 32.0f ;
     m_Verticies[5].y = y * 32.0f         ;
-
-    glBufferData(GL_ARRAY_BUFFER, m_Count * sizeof(Vertex2d), m_Verticies, GL_STATIC_DRAW);
 
     Bind();
 }

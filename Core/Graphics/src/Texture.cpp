@@ -1,8 +1,11 @@
 #include "Texture.h"
 
+int Texture::n_slots = 0;;
+
 Texture::Texture(std::string texAddress):
-	m_Slot(0)
+	m_Slot(n_slots)
 {
+	++n_slots;
 	stbi_set_flip_vertically_on_load(1);
 	m_CpuBuffer = stbi_load(texAddress.c_str(), &m_Width, &m_Height, &m_Channels, 0);
 

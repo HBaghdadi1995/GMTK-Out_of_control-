@@ -5,7 +5,15 @@
 
 #include <vector>
 
-#define GRAPHICS__BASICS 0x01
+enum eShaders
+{
+	eSHADER_TEXTURED_TILES
+};
+enum eTextures
+{
+	eTEXTURES_SMILEY,
+	eTEXTURES_WHITE
+};
 
 class Graphics
 {
@@ -32,7 +40,10 @@ public:
 
 	void Update();
 
-	void BuildTests();
+	void BuildShaders();
+	void BuildTextures();
+	void BuildTiles();
+	void BuildCharacter();
 
 	void Draw();
 private:

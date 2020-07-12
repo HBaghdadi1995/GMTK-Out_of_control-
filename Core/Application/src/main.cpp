@@ -18,7 +18,10 @@ void Initialise() {
     Graphics::Instance();
     Graphics::Instance()->Bind(Window::Instance()->GetProcAddressFunction());
 
-    Graphics::Instance()->BuildTests();
+    Graphics::Instance()->BuildShaders();
+    Graphics::Instance()->BuildTextures();
+    Graphics::Instance()->BuildTiles();
+    Graphics::Instance()->BuildCharacter();
 
     Window::Instance()->setVSync(true);
 

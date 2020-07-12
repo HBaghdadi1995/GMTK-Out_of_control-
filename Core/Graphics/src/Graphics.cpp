@@ -63,10 +63,28 @@ void Graphics::Update()
     glViewport(0, 0, 640, 480);
 }
 
-void Graphics::BuildTests() {
-    m_Textures.push_back(Texture::GetSmileyTexture());
+void Graphics::BuildShaders()
+{
     m_Shaders.push_back(Shader::GenerateTexturedTileShaders());
-    m_GraphicalObjects.push_back(new GraphicalObject(0, 14, m_Shaders.back(), { m_Textures.back(), 0.0f, 1.0f, 0.0f, 1.0f }));
+}
+
+void Graphics::BuildTextures()
+{
+    m_Textures.push_back(Texture::GetSmileyTexture());
+    m_Textures.push_back(Texture::GetWhiteTexture());
+}
+
+void Graphics::BuildTiles()
+{
+    for (int i = 0; i < 20; ++i) {
+        for (int j = 0; j < 15; ++j) {
+            m_GraphicalObjects.push_back(new GraphicalObject(i, j, m_Shaders[eSHADER_TEXTURED_TILES], { m_Textures[eTEXTURES_WHITE], 0.0f, 1.0f, 0.0f, 1.0f }));
+        }
+    }
+}
+
+void Graphics::BuildCharacter() {
+    m_GraphicalObjects.push_back(new GraphicalObject(0, 14, m_Shaders[eSHADER_TEXTURED_TILES], { m_Textures[eTEXTURES_SMILEY], 0.0f, 1.0f, 0.0f, 1.0f }));
 }
 
 void Graphics::Draw()

@@ -36,6 +36,7 @@ workspace "OutOfControl"
         dofile "Core/Graphics/Graphics_Premake.lua"
         dofile "Core/Application/Application_Premake.lua"
         dofile "Core/Timer/Timer_Premake.lua"
+        dofile "Core/Input/Input_Premake.lua"
 
     group"Src"
         dofile "Src/Shaders/Shaders_Premake.lua"

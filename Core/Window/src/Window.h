@@ -23,6 +23,8 @@ public:
 	void* GetProcAddressFunction() const { return glfwGetProcAddress; }
 
 	void Window::setVSync(bool on);
+
+	GLFWwindow* getWindowObject();
 private:
 };
 

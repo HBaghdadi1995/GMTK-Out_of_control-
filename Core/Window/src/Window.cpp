@@ -60,4 +60,9 @@ void Window::setVSync(bool on)
     }
 }
 
+GLFWwindow* Window::getWindowObject()
+{
+    return m_Window;
+}
+
 

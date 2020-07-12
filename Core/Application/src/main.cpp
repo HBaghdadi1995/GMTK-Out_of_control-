@@ -4,6 +4,7 @@
 #include "Graphics.h"
 #include "Timer.h"
 #include "Window.h"
+#include "InputManager.h"
 
 #include <stb_image.h>
 
@@ -14,7 +15,10 @@ Timer* timer = nullptr;
 
 void Initialise() {
     Window::Instance();
-    Window::Instance()->CreateWindow(640, 480, "Hello World");
+    Window::Instance()->CreateWindow(640, 480, "Reinventing the wheel");
+
+    InputManager::Instance();
+    InputManager::Instance()->AttachToGLFW(Window::Instance()->getWindowObject());
 
     Graphics::Instance();
     Graphics::Instance()->Bind(Window::Instance()->GetProcAddressFunction());
@@ -40,7 +44,7 @@ void Initialise() {
 
 void Loop() {
 
-    while (Window::Instance()->Update())
+    while (InputManager::Instance()->PollEvents())
     {
         Graphics::Instance()->Update();
         graphicalObject->Draw();

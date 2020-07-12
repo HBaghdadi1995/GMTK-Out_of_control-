@@ -13,3 +13,8 @@ function importTimer()
     includedirs {"../Timer/src"}
     links{"Timer"}
 end
+
+function importInput()
+    includedirs {"../Input/src"}
+    links{"Input"}
+end

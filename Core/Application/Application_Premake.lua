@@ -17,6 +17,7 @@ project "Application"
     importWindow()
     importGraphics()
     importTimer()
+    importInput()
 
     filter "configurations:Dist"
         defines { "NDEBUG"}

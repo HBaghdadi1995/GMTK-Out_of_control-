@@ -18,3 +18,8 @@ function importInput()
     includedirs {"../Input/src"}
     links{"Input"}
 end
+
+function importGameplay()
+    includedirs {"../Gameplay/src"}
+    links{"Gameplay"}
+end

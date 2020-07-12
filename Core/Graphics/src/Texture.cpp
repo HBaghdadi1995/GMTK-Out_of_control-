@@ -42,6 +42,11 @@ Texture* Texture::GetSmileyTexture()
 	return new Texture(std::string(TEXTURE_SRC) + std::string("Hello Smile.png"));
 }
 
+Texture* Texture::GetBallTexture()
+{
+	return new Texture(std::string(TEXTURE_SRC) + std::string("Ball.png"));
+}
+
 Texture* Texture::GetScratchTileSet()
 {
 	return new Texture(std::string(TEXTURE_SRC) + std::string("Scratch_Tileset.png"));

@@ -70,7 +70,7 @@ void Graphics::BuildShaders()
 
 void Graphics::BuildTextures()
 {
-    m_Textures.push_back(Texture::GetSmileyTexture());
+    m_Textures.push_back(Texture::GetBallTexture());
     m_Textures.push_back(Texture::GetScratchTileSet());
     float *texCoords = m_Textures[eTEXTURES_SCRATCH]->getTexCoords(0, 0);
 

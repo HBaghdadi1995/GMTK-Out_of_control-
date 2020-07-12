@@ -34,6 +34,7 @@ public:
 
 	static Texture* GetWhiteTexture();
 	static Texture* GetSmileyTexture();
+	static Texture* GetBallTexture();
 	static Texture* GetScratchTileSet();
 
 	void Bind();

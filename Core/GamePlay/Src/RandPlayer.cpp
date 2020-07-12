@@ -43,22 +43,30 @@ void RandPlayerObject::MoveRight()
 
 void RandPlayerObject::RandomUp() {
 	speed += 0.01f;
-	m_UpVal = static_cast<unsigned int> (rand()) % 0x04;
+	int r = rand() % 100 + 100 * speed;
+	if (r > 100)
+		m_UpVal = static_cast<unsigned int> (rand()) % 0x04;
 }
 
 void RandPlayerObject::RandomDown() {
 	speed += 0.01f;
-	m_UpVal = static_cast<unsigned int> (rand()) % 0x04;
+	int r = rand() % 100 + 100 * speed;
+	if (r > 100)
+		m_DownVal = static_cast<unsigned int> (rand()) % 0x04;
 }
 
 void RandPlayerObject::RandomLeft() {
 	speed += 0.01f;
-	m_LeftVal = static_cast<unsigned int> (rand()) % 0x04;
+	int r = rand() % 100 + 100 * speed;
+	if (r > 100)
+		m_LeftVal = static_cast<unsigned int> (rand()) % 0x04;
 }
 
 void RandPlayerObject::RandomRight() {
 	speed += 0.01f;
-	m_UpVal = static_cast<unsigned int> (rand()) % 0x04;
+	int r = rand() % 100 + 100 * speed;
+	if (r > 100)
+		m_RightVal = static_cast<unsigned int> (rand()) % 0x04;
 }
 
 void RandPlayerObject::RandomMove(unsigned int val)

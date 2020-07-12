@@ -1,3 +1,4 @@
+//Copywright (C) 2020 Hasan Al-Baghdadi
 #version 330 core
 
 uniform sampler2D u_Texture;

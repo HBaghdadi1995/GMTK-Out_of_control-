@@ -1,3 +1,4 @@
+//Copywright (C) 2020 Hasan Al-Baghdadi
 #include "RandPlayer.h"
 
 void RandPlayerObject::BindControlls()
@@ -17,7 +18,7 @@ void RandPlayerObject::BindControlls()
 
 bool RandPlayerObject::ShouldLose()
 {
-	return m_Position.x < 0.5f || m_Position.y < 0.5f || m_Position.x > 18.5f || m_Position.y > 12.5f;
+	return m_Position.x < 0.5f || m_Position.y < 0.5f || m_Position.x > 18.5f || m_Position.y > 13.5f;
 }
 
 void RandPlayerObject::MoveUp()

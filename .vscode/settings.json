@@ -6,5 +6,8 @@
         "project",
         "includedirs",
         "links"
-    ]
+    ],
+    "files.associations": {
+        "string": "cpp"
+    }
 }

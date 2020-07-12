@@ -1,3 +1,4 @@
+//Copywright (C) 2020 Hasan Al-Baghdadi
 #include "Timer.h"
 
 Timer::Timer(int waitTime_ms):

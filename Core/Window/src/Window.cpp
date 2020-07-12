@@ -1,3 +1,4 @@
+//Copywright (C) 2020 Hasan Al-Baghdadi
 #include "Window.h"
 
 Window*  Window::m_Instance = nullptr;

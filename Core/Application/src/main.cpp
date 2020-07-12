@@ -1,3 +1,5 @@
+//Copywright (C) 2020 Hasan Al-Baghdadi
+
 #include <iostream>
 #include <fstream>
 
@@ -14,7 +16,7 @@ RandPlayerObject* player;
 
 void Initialise() {
     Window::Instance();
-    Window::Instance()->CreateWindow(640, 480, "Drunkard");
+    Window::Instance()->CreateWindow(640, 480, "Drunkard.exe");
 
     InputManager::Instance();
     InputManager::Instance()->AttachToGLFW(Window::Instance()->getWindowObject());

@@ -29,6 +29,7 @@ project "Application"
         prebuildcommands
         {
             ("{COPY} %{wks.location}/Src/ %{wks.location}/Dist/Src/")
+            ("{COPY} %{wks.location}/Docs/ %{wks.location}/Dist/Docs/")
         }
 
     filter {}

@@ -1,3 +1,4 @@
+//Copywright (C) 2020 Hasan Al-Baghdadi
 #pragma once
 #include <chrono>
 #include <optional>

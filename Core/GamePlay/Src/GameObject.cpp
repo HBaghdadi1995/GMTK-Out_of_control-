@@ -1,3 +1,4 @@
+//Copywright (C) 2020 Hasan Al-Baghdadi
 #include "GameObject.h"
 
 GameObject::GameObject()

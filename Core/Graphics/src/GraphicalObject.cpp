@@ -22,3 +22,11 @@ void GraphicalObject::Draw()
 	m_AssociatedShape->Bind();
 	m_AssociatedShape->Draw();
 }
+
+void GraphicalObject::setCoords(float x, float y)
+{
+	m_XCoord = x;
+	m_YCoord = y;
+	
+	m_AssociatedShape->setTileCoords(x,y);
+}

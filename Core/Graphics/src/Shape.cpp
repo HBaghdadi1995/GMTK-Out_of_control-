@@ -95,3 +95,26 @@ Shape* Shape::GenerateTile(float x, float y, float xBegin, float xEnd, float yBe
 
     return new Shape(verticies, count);
 }
+
+#include <iostream>
+
+void Shape::setTileCoords(float x, float y)
+{
+    m_Verticies[0].x = x * 32.0f        ; 
+    m_Verticies[1].x = x * 32.0f        ; 
+    m_Verticies[2].x = x * 32.0f + 32.0f; 
+    m_Verticies[3].x = x * 32.0f + 32.0f; 
+    m_Verticies[4].x = x * 32.0f        ; 
+    m_Verticies[5].x = x * 32.0f + 32.0f; 
+
+    m_Verticies[0].y = y * 32.0f + 32.0f ;
+    m_Verticies[1].y = y * 32.0f         ;
+    m_Verticies[2].y = y * 32.0f         ;
+    m_Verticies[3].y = y * 32.0f + 32.0f ;
+    m_Verticies[4].y = y * 32.0f + 32.0f ;
+    m_Verticies[5].y = y * 32.0f         ;
+
+    glBufferData(GL_ARRAY_BUFFER, m_Count * sizeof(Vertex2d), m_Verticies, GL_STATIC_DRAW);
+
+    Bind();
+}

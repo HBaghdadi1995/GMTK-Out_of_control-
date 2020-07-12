@@ -20,6 +20,8 @@ public:
 
 	void Draw();
 
+	void setCoords(float x, float y);
+
 private:
 	AssociatedTexture m_AssociatedTexture;
 	Shape* m_AssociatedShape = nullptr;
@@ -28,4 +30,3 @@ private:
 	float m_XCoord = 0.0f;
 	float m_YCoord = 0.0f;
 };
-

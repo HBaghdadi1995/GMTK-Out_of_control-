@@ -31,5 +31,7 @@ public:
 	static Shape* GenerateSquare();
 	static Shape* GenerateTile(float x, float y);
 	static Shape* GenerateTile(float x, float y, float xBegin, float xEnd, float yBegin, float yEnd);
+
+	void setTileCoords(float x, float y);
 };
 

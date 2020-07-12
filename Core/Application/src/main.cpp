@@ -10,6 +10,7 @@
 GraphicalObject* graphicalObject = nullptr;
 Texture* texture = nullptr;
 Shader* basicShader = nullptr;
+Timer* timer = nullptr;
 
 void Initialise() {
     Window::Instance();
@@ -38,10 +39,18 @@ void Initialise() {
 }
 
 void Loop() {
+    float i = 0;
+    bool forward = true;
+
     while (Window::Instance()->Update())
     {
         Graphics::Instance()->Update();
         graphicalObject->Draw();
+        Timer::WaitRepeat(&timer, LAMBDA(
+            (forward) ? i+=0.3 : i-=0.3;
+            (i > 18.7 || i < 0.3) ? (forward = !forward):(NULL);
+            graphicalObject->setCoords(i, 14);
+        ), 100 );
     }
 }
 

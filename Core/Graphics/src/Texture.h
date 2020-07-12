@@ -34,12 +34,16 @@ public:
 
 	static Texture* GetWhiteTexture();
 	static Texture* GetSmileyTexture();
+	static Texture* GetScratchTileSet();
 
 	void Bind();
 	void Unbind();
 
 	inline int getSlot() const { return m_Slot; }
 
+	float* getTexCoords(int x, int y);
+
 private:
 	static GLint getOpenGLSlot(int slot);
+	const int tileSize = 32;
 };

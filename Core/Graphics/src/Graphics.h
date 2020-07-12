@@ -12,7 +12,7 @@ enum eShaders
 enum eTextures
 {
 	eTEXTURES_SMILEY,
-	eTEXTURES_WHITE
+	eTEXTURES_SCRATCH
 };
 
 enum eObjects

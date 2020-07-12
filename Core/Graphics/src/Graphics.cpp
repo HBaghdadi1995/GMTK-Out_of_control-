@@ -71,14 +71,16 @@ void Graphics::BuildShaders()
 void Graphics::BuildTextures()
 {
     m_Textures.push_back(Texture::GetSmileyTexture());
-    m_Textures.push_back(Texture::GetWhiteTexture());
+    m_Textures.push_back(Texture::GetScratchTileSet());
+    float *texCoords = m_Textures[eTEXTURES_SCRATCH]->getTexCoords(0, 0);
+
 }
 
 void Graphics::BuildTiles()
 {
     for (int i = 0; i < 20; ++i) {
         for (int j = 0; j < 15; ++j) {
-            m_GraphicalObjects.push_back(new GraphicalObject(i, j, m_Shaders[eSHADER_TEXTURED_TILES], { m_Textures[eTEXTURES_WHITE], 0.0f, 1.0f, 0.0f, 1.0f }));
+            m_GraphicalObjects.push_back(new GraphicalObject(i, j, m_Shaders[eSHADER_TEXTURED_TILES], { m_Textures[eTEXTURES_SCRATCH], 0.0f, 1.0f, 0.0f, 1.0f }));
         }
     }
 }

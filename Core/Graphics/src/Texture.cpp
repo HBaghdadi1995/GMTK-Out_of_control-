@@ -42,6 +42,11 @@ Texture* Texture::GetSmileyTexture()
 	return new Texture(std::string(TEXTURE_SRC) + std::string("Hello Smile.png"));
 }
 
+Texture* Texture::GetScratchTileSet()
+{
+	return new Texture(std::string(TEXTURE_SRC) + std::string("Scratch_Tileset.png"));
+}
+
 void Texture::Bind()
 {
 	glActiveTexture(getOpenGLSlot(m_Slot));
@@ -51,6 +56,13 @@ void Texture::Bind()
 void Texture::Unbind()
 {
 	glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+float* Texture::getTexCoords(int x, int y)
+{
+	float ratio[2] = { static_cast<float>(tileSize) / static_cast<float>(m_Width), static_cast<float>(tileSize)/ static_cast<float>(m_Height) };
+	float texCoords[4] = { x * ratio[0], (x + 1) * ratio[0], y * ratio[1], (y + 1) * ratio[1] };
+	return texCoords;
 }
 
 GLint Texture::getOpenGLSlot(int slot)

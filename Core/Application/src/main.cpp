@@ -6,15 +6,15 @@
 #include "Window.h"
 #include "InputManager.h"
 
-#include "PlayerObject.h"
+#include "RandPlayer.h"
 
 #include <stb_image.h>
 
-PlayerObject* player;
+RandPlayerObject* player;
 
 void Initialise() {
     Window::Instance();
-    Window::Instance()->CreateWindow(640, 480, "Reinventing the wheel");
+    Window::Instance()->CreateWindow(640, 480, "Drunkard");
 
     InputManager::Instance();
     InputManager::Instance()->AttachToGLFW(Window::Instance()->getWindowObject());
@@ -32,19 +32,25 @@ void Initialise() {
     Graphics::Instance()->EnableBlend();
     Graphics::CheckForError();
 
-    player = new PlayerObject();
+    player = new RandPlayerObject();
     player->setGraphicalObject(Graphics::Instance()->getGraphicalObject(eOBJECT_PLAYER));
-    player->SetPosition(19, 7);
+    player->SetPosition(10, 7);
     player->BindControlls();
 }
 
 void Loop() {
 
-    while (Window::Instance()->Update() && InputManager::Instance()->PollEvents())
+    bool shouldLose = false;
+
+    while (Window::Instance()->Update() && InputManager::Instance()->PollEvents() && !shouldLose)
     {
         Graphics::Instance()->Update();
         Graphics::Instance()->Draw();
+        shouldLose = player->ShouldLose();
     }
+
+    std::cout << "CONGRATZ, your score is : " << player->score << "\n";
+    system("pause");
 }
 
 void Deinit() {

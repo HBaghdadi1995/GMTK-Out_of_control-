@@ -5,13 +5,13 @@
 class PlayerObject: public GameObject
 {
 public:
-	void BindControlls();
+	virtual void BindControlls();
 
 protected:
-	void MoveUp();
-	void MoveDown();
-	void MoveLeft();
-	void MoveRight();
+	virtual void MoveUp();
+	virtual void MoveDown();
+	virtual void MoveLeft();
+	virtual void MoveRight();
 
 	float speed = 0.1f;
 };

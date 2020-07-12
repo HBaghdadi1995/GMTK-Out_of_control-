@@ -17,7 +17,7 @@ public:
 
 	void setGraphicalObject(GraphicalObject*  graphics);
 
-private:
+protected:
 	GraphicalObject* m_Graphics = nullptr;
 	Position m_Position;
 };

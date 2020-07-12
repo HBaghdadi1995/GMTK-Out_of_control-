@@ -10,6 +10,7 @@ GraphicalObject::GraphicalObject(float xCoord, float yCoord, Shader* shader, Ass
 
 GraphicalObject::~GraphicalObject()
 {
+	delete m_AssociatedShape;
 }
 
 void GraphicalObject::Draw()

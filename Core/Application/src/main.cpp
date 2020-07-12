@@ -10,7 +10,6 @@
 Shape* shape = nullptr;
 Texture* texture = nullptr;
 Shader* basicShader = nullptr;
-Timer* timer = nullptr;
 
 void Initialise() {
     Window::Instance();
@@ -40,7 +39,6 @@ void Initialise() {
 void Loop() {
     while (Window::Instance()->Update())
     {
-        Timer::WaitRepeat(&timer, LAMBDA(std::cout << "Hello World";),1000);
         Graphics::Instance()->Update();
         shape->Draw();
     }

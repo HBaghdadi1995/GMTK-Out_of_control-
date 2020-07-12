@@ -21,6 +21,7 @@ public:
 	void Draw();
 
 	void setCoords(float x, float y);
+	void moveCoords(float x, float y);
 
 private:
 	AssociatedTexture m_AssociatedTexture;

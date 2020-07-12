@@ -30,3 +30,8 @@ void GraphicalObject::setCoords(float x, float y)
 	
 	m_AssociatedShape->setTileCoords(x,y);
 }
+
+void GraphicalObject::moveCoords(float x, float y)
+{
+	setCoords(m_XCoord + x, m_YCoord + y);
+}

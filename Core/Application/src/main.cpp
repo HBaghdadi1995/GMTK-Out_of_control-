@@ -40,6 +40,7 @@ void Loop() {
 }
 
 void Deinit() {
+    Graphics::CheckForError();
 
     Graphics::Destroy();
     Window::Destroy();

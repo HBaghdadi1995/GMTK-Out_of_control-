@@ -38,13 +38,31 @@ Shape::~Shape()
 void Shape::Draw()
 {
     Bind();
+
     glDrawArrays(GL_TRIANGLES, 0, m_Count);
 }
 
 void Shape::Bind()
 {
     glBindBuffer(GL_ARRAY_BUFFER, m_VertexBuffer);
-    glBufferData(GL_ARRAY_BUFFER, m_Count * sizeof(Vertex2d), m_Verticies, GL_STATIC_DRAW);
+    glVertexAttribPointer(
+        0,                          // layout.
+        Vertex2d::LocationCount(),  // count
+        GL_FLOAT,                   // type
+        GL_FALSE,                   // normalized?
+        sizeof(Vertex2d),           // stride
+        Vertex2d::LocationOffset()  // array buffer offset
+    );
+
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(
+        1,                          // layout
+        Vertex2d::TextureCount(),   // count
+        GL_FLOAT,                   // type
+        GL_FALSE,                   // normalized?
+        sizeof(Vertex2d),           // stride
+        Vertex2d::TextureOffset()   // array buffer offset
+    );
 }
 
 void Shape::Unbind()

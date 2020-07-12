@@ -134,4 +134,5 @@ void Shape::setTileCoords(float x, float y)
     m_Verticies[5].y = y * 32.0f         ;
 
     Bind();
+    glBufferData(GL_ARRAY_BUFFER, m_Count * sizeof(Vertex2d), m_Verticies, GL_STATIC_DRAW);
 }

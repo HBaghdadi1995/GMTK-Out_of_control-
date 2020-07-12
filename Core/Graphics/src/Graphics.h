@@ -15,6 +15,11 @@ enum eTextures
 	eTEXTURES_WHITE
 };
 
+enum eObjects
+{
+	eOBJECT_PLAYER = 300
+};
+
 class Graphics
 {
 private:
@@ -23,9 +28,9 @@ private:
 	~Graphics();
 	static Graphics* m_Instance;
 
-	std::vector<Texture*> m_Textures;
-	std::vector<Shader*> m_Shaders;
-	std::vector<GraphicalObject*> m_GraphicalObjects;
+	std::vector<Texture*> m_Textures = std::vector<Texture*>();
+	std::vector<Shader*> m_Shaders = std::vector<Shader*>();
+	std::vector<GraphicalObject*> m_GraphicalObjects = std::vector<GraphicalObject*>();
 public:
 	static Graphics* Instance();
 	static void Destroy();
@@ -46,6 +51,8 @@ public:
 	void BuildCharacter();
 
 	void Draw();
+
+	GraphicalObject* getGraphicalObject(int i);
 private:
 
 };

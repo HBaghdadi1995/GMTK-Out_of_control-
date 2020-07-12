@@ -18,6 +18,7 @@ project "Application"
     importGraphics()
     importTimer()
     importInput()
+    importGameplay()
 
     filter "configurations:Dist"
         defines { "NDEBUG"}

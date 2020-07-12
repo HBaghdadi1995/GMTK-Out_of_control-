@@ -93,3 +93,7 @@ void Graphics::Draw()
         (*it)->Draw();
     }
 }
+
+GraphicalObject* Graphics::getGraphicalObject(int i){
+    return (m_GraphicalObjects[i]);
+}

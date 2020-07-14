@@ -18,6 +18,11 @@ public:
 	unsigned long long int score = 0;
 	float speed = 0.01f;
 
+	unsigned int m_UpVal = 0x01;
+	unsigned int m_DownVal = 0x03;
+	unsigned int m_LeftVal = 0x00;
+	unsigned int m_RightVal = 0x02;
+
 protected:
 	virtual void MoveUp();
 	virtual void MoveDown();
@@ -30,10 +35,5 @@ protected:
 	void RandomRight();
 
 	void RandomMove(unsigned int val);
-
-	unsigned int m_UpVal = 0x01;
-	unsigned int m_DownVal = 0x03;
-	unsigned int m_LeftVal = 0x00;
-	unsigned int m_RightVal = 0x02;
 
 };

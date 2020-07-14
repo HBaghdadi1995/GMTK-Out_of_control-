@@ -47,6 +47,11 @@ void Loop() {
     player->score = 0;
     player->speed = 0.01f;
 
+    player->m_UpVal = 0x01;
+    player->m_DownVal = 0x03;
+    player->m_LeftVal = 0x00;
+    player->m_RightVal = 0x02;
+
     while (Window::Instance()->Update() && InputManager::Instance()->PollEvents() && !shouldLose)
     {
         Graphics::Instance()->Update();
@@ -63,17 +68,20 @@ deinit_begin:
 
     glfwHideWindow(Window::Instance()->getWindowObject());
 
-    std::cout << "CONGRATZ, your score is : " << player->score << "\n";
-    std::cout << "Type in r to reset, and anything else to leave" << "\n";
-    std::string reset;
-    std::cin >> reset;
+    if (!glfwWindowShouldClose(Window::Instance()->getWindowObject())) {
+        std::cout << "CONGRATZ, your score is : " << player->score << "\n";
+        std::cout << "Type in r to reset, and anything else to leave" << "\n";
+        std::string reset;
+        std::cin >> reset;
+
+        if (reset.size() == 1 && reset.c_str()[0] == 'r') {
+            glfwShowWindow(Window::Instance()->getWindowObject());
+            Loop();
+            goto deinit_begin;
+        }
+    }
     
 
-    if (reset.size() == 1 && reset.c_str()[0] == 'r') {
-        glfwShowWindow(Window::Instance()->getWindowObject());
-        Loop();
-        goto deinit_begin;
-    }
 
     delete player;
     Graphics::Destroy();

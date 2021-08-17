@@ -9,5 +9,6 @@
     ],
     "files.associations": {
         "string": "cpp"
-    }
+    },
+    "editor.insertSpaces": true
 }

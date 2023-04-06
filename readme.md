@@ -1,4 +1,4 @@
-# RUNKARD
+# Drunkard
 
 This is a basic game written in C++ and OpenGL made for [the GMTK 2020 game jam](https://itch.io/jam/gmtk-2020).
 

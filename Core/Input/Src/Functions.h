@@ -13,28 +13,28 @@ typedef std::function<void(double d)> AxisPostionFunction; /*Functions that take
 */
 class Function {
 public:
-	/***
-	 *This is a function class constructor that gives this function a unique ID.
-	 */
-	Function(int &i) {
-		m_id = i;
-		i++;
-	};
-	/***
-	 *This is a function class default destructor.
-	 */
-	~Function() {};
+    /***
+     *This is a function class constructor that gives this function a unique ID.
+     */
+    Function(int &i) {
+        m_id = i;
+        i++;
+    };
+    /***
+     *This is a function class default destructor.
+     */
+    ~Function() {};
 
-	/***
-	 * Returns the Id of the function.
-	 */
-	int GetID() { return m_id; };
+    /***
+     * Returns the Id of the function.
+     */
+    int GetID() { return m_id; };
 protected:
-	
-	/***
-	 * The Id of a function, TODO: research why I did this.
-	 */
-	int m_id;
+    
+    /***
+     * The Id of a function, TODO: research why I did this.
+     */
+    int m_id;
 };
 
 /***
@@ -42,51 +42,51 @@ protected:
 */
 class DoubleFunction :public Function {
 public:
-	/***
-	 * Takes Id and a cursorPosition function to create the class
-	 */
-	DoubleFunction(int &i, CursorPositionUpdate f): Function(i), m_function(f) {
+    /***
+     * Takes Id and a cursorPosition function to create the class
+     */
+    DoubleFunction(int &i, CursorPositionUpdate f): Function(i), m_function(f) {
 
-	}
-	/* 
-	 * Executes the function
-	 */
-	void Run(double x, double y) { m_function(x,y); }
+    }
+    /* 
+     * Executes the function
+     */
+    void Run(double x, double y) { m_function(x,y); }
 
 protected:
-	CursorPositionUpdate m_function; /*the function.*/
+    CursorPositionUpdate m_function; /*the function.*/
 };
 
 class VoidFunction :public Function {
 public:
-	/***
-	 * Takes Id and a CommandFunc function to create the class
-	 */
-	VoidFunction(int &i, CommandFunc f) : Function(i), m_function(f) {
+    /***
+     * Takes Id and a CommandFunc function to create the class
+     */
+    VoidFunction(int &i, CommandFunc f) : Function(i), m_function(f) {
 
-	}
-	/*
-	 * Executes the function
-	 */
-	void Run() { m_function(); }
+    }
+    /*
+     * Executes the function
+     */
+    void Run() { m_function(); }
 
 protected:
-	CommandFunc m_function; /*the function.*/
+    CommandFunc m_function; /*the function.*/
 };
 
 class SingleFunction :public Function {
 public:
-	/***
-	 * Takes Id and an AxisPostionFunction function to create the class
-	 */
-	SingleFunction(int &i, AxisPostionFunction f) : Function(i), m_function(f) {
+    /***
+     * Takes Id and an AxisPostionFunction function to create the class
+     */
+    SingleFunction(int &i, AxisPostionFunction f) : Function(i), m_function(f) {
 
-	}
-	/*
-	 * Executes the function
-	 */
-	void Run(double x) { m_function(x); }
+    }
+    /*
+     * Executes the function
+     */
+    void Run(double x) { m_function(x); }
 
 protected:
-	AxisPostionFunction m_function; /*the function.*/
+    AxisPostionFunction m_function; /*the function.*/
 };

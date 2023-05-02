@@ -9,23 +9,23 @@ class Window
 {
 private:
 
-	GLFWwindow* m_Window = nullptr;
-	
-	Window();
-	~Window();
-	static Window* m_Instance;
+    GLFWwindow* m_Window = nullptr;
+    
+    Window();
+    ~Window();
+    static Window* m_Instance;
 public:
-	static Window* Instance();
-	static void Destroy();
+    static Window* Instance();
+    static void Destroy();
 
-	void CreateWindow(int width, int height, std::string name);
-	bool Update();
+    void CreateWindow(int width, int height, std::string name);
+    bool Update();
 
-	void* GetProcAddressFunction() const { return glfwGetProcAddress; }
+    void* GetProcAddressFunction() const { return glfwGetProcAddress; }
 
-	void Window::setVSync(bool on);
+    void Window::setVSync(bool on);
 
-	GLFWwindow* getWindowObject();
+    GLFWwindow* getWindowObject();
 private:
 };
 

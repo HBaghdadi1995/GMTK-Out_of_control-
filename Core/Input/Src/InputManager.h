@@ -34,8 +34,8 @@ using namespace std;
 //    a) Action Functions:
 //
 //       Examples of these functions include:
-//			OnKeyPress, OnKeyRelease, OnKeyHold, OnMousePress,
-//			OnMouseRelease, OnMouseHold
+//            OnKeyPress, OnKeyRelease, OnKeyHold, OnMousePress,
+//            OnMouseRelease, OnMouseHold
 //
 //       These functions take a command and a function as an input.
 //
@@ -47,226 +47,226 @@ using namespace std;
 //       putting it in is as simple as just writing in the function
 //       name. However if the function is a member of a class then
 //       your input should look like this:
-//			std::bind(&className::function, &instanceOfClass)
+//            std::bind(&className::function, &instanceOfClass)
 //
 //    b) Coordinate Functions:
 //       
 //       Examples of these functions include:
-//			OnCursorMovement, OnMouseScroll
+//            OnCursorMovement, OnMouseScroll
 //
-//		 These functions take a function as an input.
+//         These functions take a function as an input.
 //
 //       Function inputs should all return NULLs and take two doubles,
 //       if the function input is not a member of a class then then
 //       putting it in is as simple as just writing in the function
 //       name. However if the function is a member of a class then
 //       your input should look like this:
-//			std::bind(&className::function, &instanceOfClass,
-//			std::placeholders::_1,std::placeholders::_2)
+//            std::bind(&className::function, &instanceOfClass,
+//            std::placeholders::_1,std::placeholders::_2)
 //
 //    c) bool Functions:
 //
-//		 Examples of these functions include:
-//			OnCursorEnter, OnCursorLeave
+//         Examples of these functions include:
+//            OnCursorEnter, OnCursorLeave
 //
-//		 These functions take a function as an input.
+//         These functions take a function as an input.
 //
 //       Function inputs should all return NULLs and take no values,
 //       if the function input is not a member of a class then then
 //       putting it in is as simple as just writing in the function
 //       name. However if the function is a member of a class then
 //       your input should look like this:
-//			std::bind(&className::function, &instanceOfClass)
+//            std::bind(&className::function, &instanceOfClass)
 //
-//		TODO:
-//			-Allow for multiple controllers, when multile players are implemented
-//			-Bind controlleres to player
-//			-Allow for unbinding inputs
+//        TODO:
+//            -Allow for multiple controllers, when multile players are implemented
+//            -Bind controlleres to player
+//            -Allow for unbinding inputs
 
 
 //The Action used on the button
 
 enum Action {
-	RELEASE = 0,
-	PRESS = 1,
-	REPEAT = 2
+    RELEASE = 0,
+    PRESS = 1,
+    REPEAT = 2
 };
 
 
 class InputManager{
 private:
 
-	static InputManager* m_Instance;
+    static InputManager* m_Instance;
 
 public:
 
-	static InputManager* Instance();
+    static InputManager* Instance();
 
 
-	bool PollEvents() { 
+    bool PollEvents() { 
 
-		if (glfwWindowShouldClose(m_window)) {
-			return false;
-		}
-		else {
-			glfwPollEvents();
-			RunHeldFunctions();
-			Run();
-			return true;
+        if (glfwWindowShouldClose(m_window)) {
+            return false;
+        }
+        else {
+            glfwPollEvents();
+            RunHeldFunctions();
+            Run();
+            return true;
 
-		}
-	 }
+        }
+     }
 
-	void AttachToGLFW(GLFWwindow* w);
-	void ConstructDefaultKeyBindings(); //Constructs the defult keybindings
-										//the default key bunding should no longer be in use after file IO is implemented
+    void AttachToGLFW(GLFWwindow* w);
+    void ConstructDefaultKeyBindings(); //Constructs the defult keybindings
+                                        //the default key bunding should no longer be in use after file IO is implemented
 
-	//Functions used to bind a command to a function
+    //Functions used to bind a command to a function
 
-	//~~~Action Functions~~~
-	int OnKeyPress(Commands,CommandFunc); //takes in a command and void function with no input, runs when a button is first pressed
-	int OnKeyRelease(Commands, CommandFunc); //takes in a command and void function with no input, runs when a button is released
-	int OnKeyHold(Commands, CommandFunc); //takes in a command and void function with no input, , runs when a button is held down
+    //~~~Action Functions~~~
+    int OnKeyPress(Commands,CommandFunc); //takes in a command and void function with no input, runs when a button is first pressed
+    int OnKeyRelease(Commands, CommandFunc); //takes in a command and void function with no input, runs when a button is released
+    int OnKeyHold(Commands, CommandFunc); //takes in a command and void function with no input, , runs when a button is held down
 
-	int OnMousePress(Commands, CommandFunc); //takes in a command and void function with no input, runs when a mouse button is first pressed
-	int OnMouseRelease(Commands, CommandFunc);
-	int OnMouseHold(Commands, CommandFunc);
+    int OnMousePress(Commands, CommandFunc); //takes in a command and void function with no input, runs when a mouse button is first pressed
+    int OnMouseRelease(Commands, CommandFunc);
+    int OnMouseHold(Commands, CommandFunc);
 
-	//~~~Coordinate Functions~~~
-	int OnCursorMovement(CursorPositionUpdate func); //takes in a command with 2 doubles as inputs, the x and y value are relative to the top-left
-	int OnMouseScroll(CursorPositionUpdate);
+    //~~~Coordinate Functions~~~
+    int OnCursorMovement(CursorPositionUpdate func); //takes in a command with 2 doubles as inputs, the x and y value are relative to the top-left
+    int OnMouseScroll(CursorPositionUpdate);
 
-	//~~~bool Functions~~~
-	int OnCursorEnter(CommandFunc);
-	int OnCursorLeave(CommandFunc);
+    //~~~bool Functions~~~
+    int OnCursorEnter(CommandFunc);
+    int OnCursorLeave(CommandFunc);
 
-	void LockCursor(); //locks the cursor to the screen and hides it
-	void HideCursor(); //hides the cursor when above the screen
-	void ReleaseCursor(); //the cursor is never hidden nor locked
+    void LockCursor(); //locks the cursor to the screen and hides it
+    void HideCursor(); //hides the cursor when above the screen
+    void ReleaseCursor(); //the cursor is never hidden nor locked
 
-	void RemoveKeyCommand(Commands);
-	void RemoveHeldKeyCommand(Commands);
-	void RemoveMouseButtonCommand(Commands);
-	void RemoveAllKeyCommands();
-	void RemoveAllMouseCommands();
-	void RemoveCursorMovement();
-	void RemoveMouseScroll();
-	void RemoveCursorEnter();
-	void RemoveCursorLeave();
+    void RemoveKeyCommand(Commands);
+    void RemoveHeldKeyCommand(Commands);
+    void RemoveMouseButtonCommand(Commands);
+    void RemoveAllKeyCommands();
+    void RemoveAllMouseCommands();
+    void RemoveCursorMovement();
+    void RemoveMouseScroll();
+    void RemoveCursorEnter();
+    void RemoveCursorLeave();
 
-	void RemoveKeyCommand(int);
-	void RemoveHeldKeyCommand(int);
-	void RemoveMouseButtonCommand(int);
-	void RemoveCursorMovement(int);
-	void RemoveMouseScroll(int);
-	void RemoveCursorEnter(int);
-	void RemoveCursorLeave(int);
-
-
-	void CreateCursor(const GLFWimage*, int, int); //create a custom cursor and set its custom location, the coordinates are relative to the top-left, call DestroyCursor at end
-
-	void DestroyCursor(); //Destory the custom cursor
-
-	inline double* GetCursorPosition() {
-		double x, y;
-		glfwGetCursorPos(m_window, &x, &y);
-		double vec2[2] = { x, y };
-		return vec2;
-		
-	}
+    void RemoveKeyCommand(int);
+    void RemoveHeldKeyCommand(int);
+    void RemoveMouseButtonCommand(int);
+    void RemoveCursorMovement(int);
+    void RemoveMouseScroll(int);
+    void RemoveCursorEnter(int);
+    void RemoveCursorLeave(int);
 
 
-	//Controllers
+    void CreateCursor(const GLFWimage*, int, int); //create a custom cursor and set its custom location, the coordinates are relative to the top-left, call DestroyCursor at end
 
-	void static addController(int); //should add a new controller to the system
+    void DestroyCursor(); //Destory the custom cursor
 
-	int onControllerPress(int, ControllerButton, CommandFunc);
-	int onControllerRelease(int, ControllerButton, CommandFunc);
-	int onControllerHold(int, ControllerButton, CommandFunc);
+    inline double* GetCursorPosition() {
+        double x, y;
+        glfwGetCursorPos(m_window, &x, &y);
+        double vec2[2] = { x, y };
+        return vec2;
+        
+    }
 
-	int onAxisMovement(int, Axis, AxisPostionFunction);
 
-	int OnControllerDisconnect(int, CommandFunc);
-	int OnControllerConnect(int, CommandFunc);
+    //Controllers
 
-	void RemoveControllerCommand(int, ControllerButton);
-	void RemoveAllControllerCommands(int);
-	void RemoveAxisCommand(int, Axis);
-	void RemoveAllAxisCommands(int);
-	void ClearControllers();
+    void static addController(int); //should add a new controller to the system
 
-	void RemoveControllerCommand(int, int);
-	void RemoveAxisCommand(int, int);
+    int onControllerPress(int, ControllerButton, CommandFunc);
+    int onControllerRelease(int, ControllerButton, CommandFunc);
+    int onControllerHold(int, ControllerButton, CommandFunc);
 
-	void RemoveControllerConnect(int, int);
-	void RemoveControllerDisconnect(int, int);
+    int onAxisMovement(int, Axis, AxisPostionFunction);
 
-	void Run();
+    int OnControllerDisconnect(int, CommandFunc);
+    int OnControllerConnect(int, CommandFunc);
 
-	void static InitialiseControllers();
-	bool ControllerExists(int i);
+    void RemoveControllerCommand(int, ControllerButton);
+    void RemoveAllControllerCommands(int);
+    void RemoveAxisCommand(int, Axis);
+    void RemoveAllAxisCommands(int);
+    void ClearControllers();
 
-	int GetNumberOfControllers();
+    void RemoveControllerCommand(int, int);
+    void RemoveAxisCommand(int, int);
 
-	void RemoveController(int);
+    void RemoveControllerConnect(int, int);
+    void RemoveControllerDisconnect(int, int);
+
+    void Run();
+
+    void static InitialiseControllers();
+    bool ControllerExists(int i);
+
+    int GetNumberOfControllers();
+
+    void RemoveController(int);
 
 protected:
-	InputManager(); //Call this constructor at the beginning of the class
-	~InputManager();
+    InputManager(); //Call this constructor at the beginning of the class
+    ~InputManager();
 
-	GLFWwindow *m_window; //referenece to the window
+    GLFWwindow *m_window; //referenece to the window
 
-	static KeyMap *m_currentKeyMap; //pointer to the current keybinding
-	vector<KeyMap> m_keyMaps; //a list of all key bindings
+    static KeyMap *m_currentKeyMap; //pointer to the current keybinding
+    vector<KeyMap> m_keyMaps; //a list of all key bindings
 
-	static KeyMap *m_currentMouseMap;
-	vector<KeyMap> m_mouseMaps;
+    static KeyMap *m_currentMouseMap;
+    vector<KeyMap> m_mouseMaps;
 
-	static multimap<int, VoidFunction> m_CommandFuncMap; //binds commands and action to void functions with no input
-	static multimap<int, VoidFunction> m_HeldFuncMap; //binds commands and action to void functions with no input
-	static multimap<int, VoidFunction> m_MouseCommandFuncMap;
-	static vector<DoubleFunction> m_MouseFuncVector;
-	static vector<DoubleFunction> m_ScrollFuncVector;
-	static vector<VoidFunction> m_enterFunctions;
-	static vector<VoidFunction> m_leaveFunctions;
+    static multimap<int, VoidFunction> m_CommandFuncMap; //binds commands and action to void functions with no input
+    static multimap<int, VoidFunction> m_HeldFuncMap; //binds commands and action to void functions with no input
+    static multimap<int, VoidFunction> m_MouseCommandFuncMap;
+    static vector<DoubleFunction> m_MouseFuncVector;
+    static vector<DoubleFunction> m_ScrollFuncVector;
+    static vector<VoidFunction> m_enterFunctions;
+    static vector<VoidFunction> m_leaveFunctions;
 
-	void AddNewCommand(Commands c, Action p, VoidFunction func); //Adds another value pair of command & action to void function with no input
-	void AddNewMouseCommand(Commands c, Action p, VoidFunction func);
+    void AddNewCommand(Commands c, Action p, VoidFunction func); //Adds another value pair of command & action to void function with no input
+    void AddNewMouseCommand(Commands c, Action p, VoidFunction func);
 
-	static void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mods); //A static class that is called everytime pollEvents is called
-	static void CursorPosCallback(GLFWwindow *, double, double);
-	static void CursorEnterCallback(GLFWwindow *, int);
-	static void MouseButtonCallback(GLFWwindow *window, int button, int action, int mods);
-	static void ScrollCallBack(GLFWwindow*, double, double);
-	static void JoystickConnectCallback(int, int);
+    static void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mods); //A static class that is called everytime pollEvents is called
+    static void CursorPosCallback(GLFWwindow *, double, double);
+    static void CursorEnterCallback(GLFWwindow *, int);
+    static void MouseButtonCallback(GLFWwindow *window, int button, int action, int mods);
+    static void ScrollCallBack(GLFWwindow*, double, double);
+    static void JoystickConnectCallback(int, int);
 
-	GLFWcursor* m_cursor;
-
-
-	//Map holding whether commands are considered held down
-	static map<Commands, bool> m_HeldMap;
-	//Runs any functions that are flagged as being held down
-	void RunHeldFunctions();
-
-	
-
-	//controllers
-
-	static vector<GameController> m_controllers;
-
-	static map<int, multimap<int, VoidFunction>> m_controllerButtonMap;
-	static map<int, multimap<Axis, SingleFunction>> m_axisMap;
+    GLFWcursor* m_cursor;
 
 
-	static map<ControllerButton, bool> m_HeldControllerMap;
+    //Map holding whether commands are considered held down
+    static map<Commands, bool> m_HeldMap;
+    //Runs any functions that are flagged as being held down
+    void RunHeldFunctions();
 
-	static multimap<int, VoidFunction> m_disconnectFunctions;
-	static multimap<int, VoidFunction> m_connectFunctions;
+    
 
-	static map<int, bool> m_controllerIsConnected;
+    //controllers
 
-	static int m_numberOfControllers;
+    static vector<GameController> m_controllers;
 
-	int m_funcNums = 0;
+    static map<int, multimap<int, VoidFunction>> m_controllerButtonMap;
+    static map<int, multimap<Axis, SingleFunction>> m_axisMap;
+
+
+    static map<ControllerButton, bool> m_HeldControllerMap;
+
+    static multimap<int, VoidFunction> m_disconnectFunctions;
+    static multimap<int, VoidFunction> m_connectFunctions;
+
+    static map<int, bool> m_controllerIsConnected;
+
+    static int m_numberOfControllers;
+
+    int m_funcNums = 0;
 private:
 };

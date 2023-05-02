@@ -89,7 +89,7 @@ Shape* Shape::GenerateSquare()
     verticies[5] = { 0.5f, -0.5f, 1.0f, 1.0f};
 
 
-	return new Shape(verticies, count);
+    return new Shape(verticies, count);
 }
 
 Shape* Shape::GenerateTile(float x, float y)

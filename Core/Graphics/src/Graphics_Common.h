@@ -10,14 +10,14 @@
 #else
 
 #define GL_CALL(x)\
-	x;\
-	{\
-		GLenum err;\
-		while ((err = glGetError()) != GL_NO_ERROR)\
-		{\
-			std::cerr << "Execution stopped because of OpenGL error: " << err; \
-			assert(false);\
-		}\
-	}\
+    x;\
+    {\
+        GLenum err;\
+        while ((err = glGetError()) != GL_NO_ERROR)\
+        {\
+            std::cerr << "Execution stopped because of OpenGL error: " << err; \
+            assert(false);\
+        }\
+    }
 
 #endif //NDEBUG

@@ -10,37 +10,37 @@ using namespace std;
 //Author Hasan Al-Baghdadi
 
 enum Commands {
-	JUMP,
-	SHOOT,
-	ALT_SHOOT,
-	RELOAD,
-	FORWARD,
-	LEFT,
-	RIGHT,
-	UP,
-	DOWN,
-	BACK,
-	QUIT,
-	ALT_FORWARD,
-	ALT_BACK,
-	ALT_LEFT,
-	ALT_RIGHT,
-	NUM_COMMANDS,
-	DEBUG_DRAW,
-	PAUSE,
-	INFO,
-	ACCEPT
+    JUMP,
+    SHOOT,
+    ALT_SHOOT,
+    RELOAD,
+    FORWARD,
+    LEFT,
+    RIGHT,
+    UP,
+    DOWN,
+    BACK,
+    QUIT,
+    ALT_FORWARD,
+    ALT_BACK,
+    ALT_LEFT,
+    ALT_RIGHT,
+    NUM_COMMANDS,
+    DEBUG_DRAW,
+    PAUSE,
+    INFO,
+    ACCEPT
 
 };
 
 class KeyMap {
 public:
-	KeyMap() {}
-	~KeyMap() {}
+    KeyMap() {}
+    ~KeyMap() {}
 
-	void AddNew(Commands, int); //Add another command button pair
-	int getButton(Commands c); //Get a button using a key
+    void AddNew(Commands, int); //Add another command button pair
+    int getButton(Commands c); //Get a button using a key
 protected:
-	map<Commands, int> m_keyMap;
+    map<Commands, int> m_keyMap;
 private:
 };

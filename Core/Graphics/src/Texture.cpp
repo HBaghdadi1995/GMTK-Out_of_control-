@@ -13,17 +13,42 @@ Texture::Texture(std::string texAddress):
 		assert(false);
 	}
 
-	glGenTextures(1, &m_GpuBuffer);
-	glBindTexture(GL_TEXTURE_2D, m_GpuBuffer);
+	GL_CALL(glGenTextures(1, &m_GpuBuffer));
+	GL_CALL(glBindTexture(GL_TEXTURE_2D, m_GpuBuffer));
 
 
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, m_Width, m_Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, m_CpuBuffer);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, m_Width, m_Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
-	glBindTexture(GL_TEXTURE_2D, 0);
+	GL_CALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
+	GL_CALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
+	GL_CALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER));
+	GL_CALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER));
+
+	GL_CALL(
+		glTexImage2D(
+			GL_TEXTURE_2D,
+			0,
+			GL_RGBA8,
+			m_Width,
+			m_Height,
+			0,
+			GL_RGBA,
+			GL_UNSIGNED_BYTE,
+			m_CpuBuffer
+		)
+	);
+	GL_CALL(
+		glTexImage2D(
+			GL_TEXTURE_2D,
+			0, 
+			GL_RGBA8, 
+			m_Width, 
+			m_Height, 
+			0, 
+			GL_RGBA, 
+			GL_UNSIGNED_BYTE, 
+			NULL
+		)
+	);
+	GL_CALL(glBindTexture(GL_TEXTURE_2D, 0));
 }
 
 Texture::~Texture()

@@ -5,7 +5,7 @@
 #include <iostream>
 
 #include <stb_image.h>
-#include <glad/glad.h>
+#include "Graphics_Common.h"
 
 #ifdef DIST
 

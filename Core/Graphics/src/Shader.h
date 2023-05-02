@@ -10,6 +10,8 @@
 
 #include <glad/glad.h>
 
+#include "Graphics_Common.h"
+
 #ifdef DIST
 
 #define SHADER_SRC "./Src/Shaders/"
@@ -51,6 +53,6 @@ public:
 
     template<>
     void setUniform(std::string uniformName, int value) {
-        glUniform1i(getUniformLocation(uniformName), value);
+        GL_CALL(glUniform1i(getUniformLocation(uniformName), value));
     }
 };

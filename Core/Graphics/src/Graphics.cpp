@@ -44,8 +44,8 @@ void Graphics::Bind(void* procAddress)
 
 void Graphics::EnableBlend()
 {
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    GL_CALL(glEnable(GL_BLEND));
+    GL_CALL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
 }
 
 void Graphics::CheckForError()
@@ -58,9 +58,9 @@ void Graphics::CheckForError()
 
 void Graphics::Update()
 {
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glViewport(0, 0, 640, 480);
+    GL_CALL(glClearColor(0.0f, 0.0f, 0.0f, 1.0f));
+    GL_CALL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
+    GL_CALL(glViewport(0, 0, 640, 480));
 }
 
 void Graphics::BuildShaders()

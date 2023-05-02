@@ -1,73 +1,80 @@
 #include "Shape.h"
 
+#include "Graphics_Common.h"
+
 Shape::Shape(Vertex2d* verticies, unsigned int count):
     m_Verticies(verticies),
     m_Count(count)
 {
-    glGenBuffers(1, &m_VertexBuffer);
-    glBindBuffer(GL_ARRAY_BUFFER, m_VertexBuffer);
-    glBufferData(GL_ARRAY_BUFFER, m_Count * sizeof(Vertex2d), m_Verticies, GL_STATIC_DRAW);
+    GL_CALL(glGenBuffers(1, &m_VertexBuffer));
+    GL_CALL(glBindBuffer(GL_ARRAY_BUFFER, m_VertexBuffer));
+    GL_CALL(glBufferData(
+        GL_ARRAY_BUFFER,
+        m_Count * sizeof(Vertex2d),
+        m_Verticies,
+        GL_STATIC_DRAW)
+    );
 
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(
+    GL_CALL(glEnableVertexAttribArray(0));
+    GL_CALL(glVertexAttribPointer(
         0,                          // layout.
         Vertex2d::LocationCount(),  // count
         GL_FLOAT,                   // type
         GL_FALSE,                   // normalized?
         sizeof(Vertex2d),           // stride
         Vertex2d::LocationOffset()  // array buffer offset
-    );
+    ));
 
-    glEnableVertexAttribArray(1);
-    glVertexAttribPointer(
+    GL_CALL(glEnableVertexAttribArray(1));
+    GL_CALL(glVertexAttribPointer(
         1,                          // layout
         Vertex2d::TextureCount(),   // count
         GL_FLOAT,                   // type
         GL_FALSE,                   // normalized?
         sizeof(Vertex2d),           // stride
         Vertex2d::TextureOffset()   // array buffer offset
-    );
+    ));
 }
 
 Shape::~Shape()
 {
     delete[] m_Verticies;
-    glDeleteBuffers(1,&m_VertexBuffer);
+    GL_CALL(glDeleteBuffers(1,&m_VertexBuffer));
 }
 
 void Shape::Draw()
 {
     Bind();
 
-    glDrawArrays(GL_TRIANGLES, 0, m_Count);
+    GL_CALL(glDrawArrays(GL_TRIANGLES, 0, m_Count));
 }
 
 void Shape::Bind()
 {
-    glBindBuffer(GL_ARRAY_BUFFER, m_VertexBuffer);
-    glVertexAttribPointer(
+    GL_CALL(glBindBuffer(GL_ARRAY_BUFFER, m_VertexBuffer));
+    GL_CALL(glVertexAttribPointer(
         0,                          // layout.
         Vertex2d::LocationCount(),  // count
         GL_FLOAT,                   // type
         GL_FALSE,                   // normalized?
         sizeof(Vertex2d),           // stride
         Vertex2d::LocationOffset()  // array buffer offset
-    );
+    ));
 
-    glEnableVertexAttribArray(1);
-    glVertexAttribPointer(
+    GL_CALL(glEnableVertexAttribArray(1));
+    GL_CALL(glVertexAttribPointer(
         1,                          // layout
         Vertex2d::TextureCount(),   // count
         GL_FLOAT,                   // type
         GL_FALSE,                   // normalized?
         sizeof(Vertex2d),           // stride
         Vertex2d::TextureOffset()   // array buffer offset
-    );
+    ));
 }
 
 void Shape::Unbind()
 {
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    GL_CALL(glBindBuffer(GL_ARRAY_BUFFER, 0));
 }
 
 Shape* Shape::GenerateSquare()
@@ -134,5 +141,5 @@ void Shape::setTileCoords(float x, float y)
     m_Verticies[5].y = y * 32.0f         ;
 
     Bind();
-    glBufferData(GL_ARRAY_BUFFER, m_Count * sizeof(Vertex2d), m_Verticies, GL_STATIC_DRAW);
+    GL_CALL(glBufferData(GL_ARRAY_BUFFER, m_Count * sizeof(Vertex2d), m_Verticies, GL_STATIC_DRAW));
 }

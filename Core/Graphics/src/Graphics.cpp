@@ -24,7 +24,7 @@ Graphics* Graphics::Instance()
     if (!m_Instance) {
         m_Instance = new Graphics();
     }
-	return m_Instance;
+    return m_Instance;
 }
 
 void Graphics::Destroy()

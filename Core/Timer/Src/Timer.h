@@ -10,17 +10,17 @@
 class Timer
 {
 public:
-	Timer(int waitTime_ms);
-	~Timer();
+    Timer(int waitTime_ms);
+    ~Timer();
 
-	void init();
-	bool check();
+    void init();
+    bool check();
 
-	static void Wait(Timer** t, std::function<void(void)> func);
-	static void WaitRepeat(Timer** t, std::function<void(void)> func, int waitTime);
+    static void Wait(Timer** t, std::function<void(void)> func);
+    static void WaitRepeat(Timer** t, std::function<void(void)> func, int waitTime);
 
 private:
-	unsigned long long int m_Init = 0;
-	unsigned long long int m_WaitTime = 0;
-	
+    unsigned long long int m_Init = 0;
+    unsigned long long int m_WaitTime = 0;
+    
 };

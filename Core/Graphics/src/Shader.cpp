@@ -12,12 +12,12 @@ Shader::~Shader()
 
 void Shader::Bind()
 {
-	glUseProgram(m_Program);
+    glUseProgram(m_Program);
 }
 
 void Shader::Unbind()
 {
-	glUseProgram(0);
+    glUseProgram(0);
 }
 
 Shader* Shader::GenerateBasicShaders()

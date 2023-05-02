@@ -3,10 +3,10 @@
 class VertexArray
 {
 private:
-	GLuint m_id;
-	GLuint m_bufferId;
+    GLuint m_id;
+    GLuint m_bufferId;
 public:
-	VertexArray(int count, GLuint type, GLboolean normalised, GLuint stride, GLvoid* textureOffset);
-	~VertexArray();
+    VertexArray(int count, GLuint type, GLboolean normalised, GLuint stride, GLvoid* textureOffset);
+    ~VertexArray();
 };
 

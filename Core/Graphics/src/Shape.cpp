@@ -12,8 +12,8 @@ Shape::Shape(Vertex2d* verticies, unsigned int count):
         GL_ARRAY_BUFFER,
         m_Count * sizeof(Vertex2d),
         m_Verticies,
-        GL_STATIC_DRAW)
-    );
+        GL_STATIC_DRAW
+    ));
 
     GL_CALL(glEnableVertexAttribArray(0));
     GL_CALL(glVertexAttribPointer(

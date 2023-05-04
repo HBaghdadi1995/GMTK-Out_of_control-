@@ -7,17 +7,17 @@ Shader::Shader(std::string vertex, std::string fragment)
 
 Shader::~Shader()
 {
-    GL_CALL(glDeleteShader(m_Program));
+    GL_CALL(glDeleteProgram(m_Program));
 }
 
 void Shader::Bind()
 {
-    glUseProgram(m_Program);
+    GL_CALL(glUseProgram(m_Program));
 }
 
 void Shader::Unbind()
 {
-    glUseProgram(0);
+    GL_CALL(glUseProgram(0));
 }
 
 Shader* Shader::GenerateBasicShaders()
@@ -70,7 +70,7 @@ void Shader::compileShader(std::string address, GLuint type)
     const char* src = data.c_str();
 
     GLuint shader = GL_CALL(glCreateShader(type));
-    GL_CALL(glShaderSource(shader, 1, &src, NULL)); // vertex_shader_source is a GLchar* containing GL_CALL(glsl shader source code
+    GL_CALL(glShaderSource(shader, 1, &src, NULL)); // vertex_shader_source is a GLchar* containing glsl shader source code
     GL_CALL(glCompileShader(shader));
 
     GLint shader_compiled;

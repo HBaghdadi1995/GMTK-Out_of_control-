@@ -50,7 +50,7 @@ Texture::Texture(std::string texAddress):
 Texture::~Texture()
 {
     stbi_image_free(m_CpuBuffer);
-    glDeleteTextures(1, &m_GpuBuffer);
+   GL_CALL(glDeleteTextures(1, &m_GpuBuffer));
 }
 
 Texture* Texture::GetWhiteTexture()
@@ -75,13 +75,13 @@ Texture* Texture::GetScratchTileSet()
 
 void Texture::Bind()
 {
-    glActiveTexture(getOpenGLSlot(m_Slot));
-    glBindTexture(GL_TEXTURE_2D, m_GpuBuffer);
+    GL_CALL(glActiveTexture(getOpenGLSlot(m_Slot)));
+    GL_CALL(glBindTexture(GL_TEXTURE_2D, m_GpuBuffer));
 }
 
 void Texture::Unbind()
 {
-    glBindTexture(GL_TEXTURE_2D, 0);
+    GL_CALL(glBindTexture(GL_TEXTURE_2D, 0));
 }
 
 float* Texture::getTexCoords(int x, int y)

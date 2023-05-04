@@ -33,17 +33,6 @@ Texture::Texture(std::string texAddress):
         GL_UNSIGNED_BYTE,
         m_CpuBuffer
     ));
-    GL_CALL(glTexImage2D(
-        GL_TEXTURE_2D,
-        0, 
-        GL_RGBA8, 
-        m_Width, 
-        m_Height, 
-        0, 
-        GL_RGBA, 
-        GL_UNSIGNED_BYTE, 
-        NULL
-    ));
     GL_CALL(glBindTexture(GL_TEXTURE_2D, 0));
 }
 
